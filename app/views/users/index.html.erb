@@ -10,12 +10,18 @@
   </thead>
 
   <tbody>
+    <tr>
+      <td class="show">Nombre de Usuario</td>
+      <td class="show">Mostrar Info</td>
+      <td class="show">Editar</td>
+      <td class="show">Borrar Usuario</td>
+    </tr>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.username %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="show"><%= user.username %></td>
+        <td class="show"><%= link_to 'Show', user %></td>
+        <td class="show"><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td class="show"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

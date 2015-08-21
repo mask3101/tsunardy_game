@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   before_save :user_to_down
 
   def user_to_down
-    binding.pry
+    #binding.pry
     self.username = self.username.downcase
   end
 
