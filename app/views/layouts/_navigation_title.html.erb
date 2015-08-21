@@ -4,7 +4,17 @@
         <ul class="nav">
           <li>
             <div class='nav_item'>
-              <h3>Tsunami</h3>
+              <h3><%= link_to "Tsunami", root_path, :class => 'brand' %></h3>
+            </div>
+          </li>
+          <li>
+            <div class='nav_item'>
+              <h3><%= link_to "User", users_path, :class => 'brand' %></h3>
+            </div>
+          </li>
+          <li>
+            <div class='nav_item'>
+              <h3><%= link_to "Preguntas", questions_path, :class => 'brand' %></h3>
             </div>
           </li>
         </ul>

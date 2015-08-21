@@ -40,6 +40,7 @@ GEM
     autoprefixer-rails (5.2.1.1)
       execjs
       json
+    bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.5.1)
@@ -55,7 +56,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    crypt (2.0)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -153,10 +153,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
-  crypt
   jbuilder (~> 2.0)
   jquery-rails
   pry

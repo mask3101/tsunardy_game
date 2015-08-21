@@ -85,100 +85,45 @@ div.comment_votes {
  left:0;
 }
 
-.CSSTableGenerator {
-margin:0px;padding:0px;
-	width:100%;
-	border:1px solid #ffff00;
-
-	-moz-border-radius-bottomleft:7px;
-	-webkit-border-bottom-left-radius:7px;
-	border-bottom-left-radius:7px;
-
-	-moz-border-radius-bottomright:7px;
-	-webkit-border-bottom-right-radius:7px;
-	border-bottom-right-radius:7px;
-
-	-moz-border-radius-topright:7px;
-	-webkit-border-top-right-radius:7px;
-	border-top-right-radius:7px;
-
-	-moz-border-radius-topleft:7px;
-	-webkit-border-top-left-radius:7px;
-	border-top-left-radius:7px;
-}.CSSTableGenerator table{
-    border-collapse: collapse;
-        border-spacing: 0;
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
-}.CSSTableGenerator tr:last-child td:last-child {
-	-moz-border-radius-bottomright:7px;
-	-webkit-border-bottom-right-radius:7px;
-	border-bottom-right-radius:7px;
-}
-.CSSTableGenerator table tr:first-child td:first-child {
-	-moz-border-radius-topleft:7px;
-	-webkit-border-top-left-radius:7px;
-	border-top-left-radius:7px;
-}
-.CSSTableGenerator table tr:first-child td:last-child {
-	-moz-border-radius-topright:7px;
-	-webkit-border-top-right-radius:7px;
-	border-top-right-radius:7px;
-}.CSSTableGenerator tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:7px;
-	-webkit-border-bottom-left-radius:7px;
-	border-bottom-left-radius:7px;
-}.CSSTableGenerator tr:hover td{
-	background-color:#ffffff;
-
+table.td_header, table.game {
+  width: 90%;
+  height: 20%;
 
 }
-.CSSTableGenerator td{
-	vertical-align:middle;
 
-	background-color:#0000bf;
-
-	border:1px solid #ffff00;
-	border-width:0px 1px 1px 0px;
-	text-align:center;
-	padding:9px;
-	font-size:10px;
-	font-family:Arial;
-	font-weight:bold;
-	color:#000000;
-}.CSSTableGenerator tr:last-child td{
-	border-width:0px 1px 0px 0px;
-}.CSSTableGenerator tr td:last-child{
-	border-width:0px 0px 1px 0px;
-}.CSSTableGenerator tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
-}
-.CSSTableGenerator tr:first-child td{
-		background:-o-linear-gradient(bottom, #0000ff 5%, #00007f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000ff), color-stop(1, #00007f) );
-	background:-moz-linear-gradient( center top, #0000ff 5%, #00007f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0000ff", endColorstr="#00007f");	background: -o-linear-gradient(top,#0000ff,00007f);
-
-	background-color:#0000ff;
-	border:0px solid #ffff00;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:14px;
-	font-family:Arial;
-	font-weight:bold;
-	color:#ffffff;
+.show {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 15px;
 }
 
-.CSSTableGenerator tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #0000ff 5%, #00007f 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0000ff), color-stop(1, #00007f) );
-	background:-moz-linear-gradient( center top, #0000ff 5%, #00007f 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0000ff", endColorstr="#00007f");	background: -o-linear-gradient(top,#0000ff,00007f);
+td a {
+    display:block;
+    width:100%;
+}
 
-	background-color:#0000ff;
+table.game, td.game, tr.game {
+   border: 1px solid black;
+   border-collapse: collapse;
+   border-radius: 15px;
+   background: -webkit-linear-gradient(#000009, #000066, #000009); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#000009, #000066, #000009); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#000009, #000066, #000009); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#000009, #000066, #000009); /* Standard syntax */
+
 }
-.CSSTableGenerator tr:first-child td:first-child{
-	border-width:2px 2px 2px 2px;
+
+
+td.game {
+  height: 70px;
+  width: 20%;
+  padding: 15px;
+  background-color: blue;
+    color: yellow;
+    word-break: keep-all;
 }
-.CSSTableGenerator tr:first-child td:last-child{
-	border-width:2px 2px 2px 2px;
+
+tr {
+    padding: 15px;
+    text-align: center;
 }

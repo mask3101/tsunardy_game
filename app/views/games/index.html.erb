@@ -1,104 +1,121 @@
+<div class='row'>
+  <div class='span8 well'>
+    <%= render question.categories %>
+    <h4><%= link_to post.title, fix_url(post.url) %></h4>
+    <p><%= post.description %></p>
+    <p>
+      <span class='quiet'>Posted by: </span><%= link_to post.user.username, user_path(post.user) %>
+      <small>Post created at: <%= display_time(post.created_at) %></small>
+    </p>
+    <small>
+      <span>
+        <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+      </span>
+    </small>
+  </div>
+</div>
+
 <table class='CSSTableGenerator'>
 <tr>
     <td>
-      Cat 1
+      Cultura Japonesa
     </td>
     <td>
-      Cat 1
+      Anime
     </td>
     <td>
-      Cat 1
+      Video Juegos
     </td>
     <td>
-      Cat 1
+      Peliculas
     </td>
     <td>
-      Cat 1
-    </td>
-</tr>
-<tr>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
+      Miscelaneo
     </td>
 </tr>
 <tr>
     <td>
-      Cat 1
+      Cat 1-1
     </td>
     <td>
-      Cat 1
+      Cat 2-1
     </td>
     <td>
-      Cat 1
+      Cat 3-1
     </td>
     <td>
-      Cat 1
+      Cat 4-1
     </td>
     <td>
-      Cat 1
-    </td>
-</tr>
-<tr>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
-    </td>
-    <td>
-      Cat 1
+      Cat 5-1
     </td>
 </tr>
 <tr>
     <td>
-      Cat 1
+      Cat 1-2
     </td>
     <td>
-      Cat 1
+      Cat 2-2
     </td>
     <td>
-      Cat 1
+      Cat 3-2
     </td>
     <td>
-      Cat 1
+      Cat 4-2
     </td>
     <td>
-      Cat 1
+      Cat 5-2
     </td>
 </tr>
 <tr>
     <td>
-      Cat 1
+      Cat 1-3
     </td>
     <td>
-      Cat 1
+      Cat 2-3
     </td>
     <td>
-      Cat 1
+      Cat 3-3
     </td>
     <td>
-      Cat 1
+      Cat 4-3
     </td>
     <td>
-      Cat 1
+      Cat 5-3
+    </td>
+</tr>
+<tr>
+    <td>
+      Cat 1-4
+    </td>
+    <td>
+      Cat 2-4
+    </td>
+    <td>
+      Cat 3-4
+    </td>
+    <td>
+      Cat 4-4
+    </td>
+    <td>
+      Cat 5-4
+    </td>
+</tr>
+<tr>
+    <td>
+      Cat 1-5
+    </td>
+    <td>
+      Cat 2-5
+    </td>
+    <td>
+      Cat 3-5
+    </td>
+    <td>
+      Cat 4-5
+    </td>
+    <td>
+      Cat 5-5
     </td>
 </tr>
 </table>

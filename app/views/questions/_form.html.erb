@@ -1,17 +1,38 @@
-<%= form_for(@question) do |f| %>
-  <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="well">
+<%= form_for @question do |f| %>
+    <div class='control-group'>
+      <%= f.label :question %>
+      <%= f.text_field :question %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class='control-group'>
+      <%= f.label :answer %>
+      <%= f.text_field :answer %>
+    </div>
+    <div class='control-group'>
+      <%= f.radio_button :difficulty, 1, :checked => @question.difficulty == 1 ? true  : false %>
+      <%= f.label :difficulty, "Muy Facil", :value => 1 %>
+      <%= f.radio_button :difficulty, 2, :checked => @question.difficulty == 2 ? true  : false %>
+      <%= f.label :difficulty, "Facil", :value => 2 %>
+      <%= f.radio_button :difficulty, 3, :checked => @question.difficulty == 3 ? true  : false %>
+      <%= f.label :difficulty, "Medio", :value => 3 %>
+      <%= f.radio_button :difficulty, 4, :checked => @question.difficulty == 4 ? true  : false %>
+      <%= f.label :difficulty, "Dificil", :value => 4 %>
+      <%= f.radio_button :difficulty, 5, :checked => @question.difficulty == 5 ? true  : false %>
+      <%= f.label :difficulty, "Muy Dificil", :value => 5 %>
+    </div>
+    <div class='control-group'>
+      <%= f.radio_button :categoria, 1, :checked => @question.categoria == 1 ? true  : false %>
+      <%= f.label :categoria, "Anime", :value => 1 %>
+      <%= f.radio_button :categoria, 2, :checked => @question.categoria == 2 ? true  : false %>
+      <%= f.label :categoria, "Video Juegos", :value => 2 %>
+      <%= f.radio_button :categoria, 3, :checked => @question.categoria == 3 ? true  : false %>
+      <%= f.label :categoria, "Peliculas", :value => 3 %>
+      <%= f.radio_button :categoria, 4, :checked => @question.categoria == 4 ? true  : false %>
+      <%= f.label :categoria, "Cultura Japonesa", :value => 4 %>
+      <%= f.radio_button :categoria, 5, :checked => @question.categoria == 5 ? true  : false %>
+      <%= f.label :categoria, "Miscelaneo", :value => 5 %>
+    </div>
+    <br/>
+    <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-primary')%>
 <% end %>
+</div>

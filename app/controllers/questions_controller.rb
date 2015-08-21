@@ -26,14 +26,12 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    if @question.save
+      flash[:notice] = "La pregunta se ha creado."
+      redirect_to new_question_path
+    else
+      flash[:error] = "La pregunta no se pudo crear."
+      render :new
     end
   end
 
@@ -49,6 +47,61 @@ class QuestionsController < ApplicationController
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def game
+    quest_cat1_1 = Question.where(:categoria => 1, :difficulty => 1)
+    quest_cat2_1 = Question.where(:categoria => 2, :difficulty => 1)
+    quest_cat3_1 = Question.where(:categoria => 3, :difficulty => 1)
+    quest_cat4_1 = Question.where(:categoria => 4, :difficulty => 1)
+    quest_cat5_1 = Question.where(:categoria => 5, :difficulty => 1)
+    quest_cat1_2 = Question.where(:categoria => 1, :difficulty => 2)
+    quest_cat2_2 = Question.where(:categoria => 2, :difficulty => 2)
+    quest_cat3_2 = Question.where(:categoria => 3, :difficulty => 2)
+    quest_cat4_2 = Question.where(:categoria => 4, :difficulty => 2)
+    quest_cat5_2 = Question.where(:categoria => 5, :difficulty => 2)
+    quest_cat1_3 = Question.where(:categoria => 1, :difficulty => 3)
+    quest_cat2_3 = Question.where(:categoria => 2, :difficulty => 3)
+    quest_cat3_3 = Question.where(:categoria => 3, :difficulty => 3)
+    quest_cat4_3 = Question.where(:categoria => 4, :difficulty => 3)
+    quest_cat5_3 = Question.where(:categoria => 5, :difficulty => 3)
+    quest_cat1_4 = Question.where(:categoria => 1, :difficulty => 4)
+    quest_cat2_4 = Question.where(:categoria => 2, :difficulty => 4)
+    quest_cat3_4 = Question.where(:categoria => 3, :difficulty => 4)
+    quest_cat4_4 = Question.where(:categoria => 4, :difficulty => 4)
+    quest_cat5_4 = Question.where(:categoria => 5, :difficulty => 4)
+    quest_cat1_5 = Question.where(:categoria => 1, :difficulty => 5)
+    quest_cat2_5 = Question.where(:categoria => 2, :difficulty => 5)
+    quest_cat3_5 = Question.where(:categoria => 3, :difficulty => 5)
+    quest_cat4_5 = Question.where(:categoria => 4, :difficulty => 5)
+    quest_cat5_5 = Question.where(:categoria => 5, :difficulty => 5)
+    @question = []
+    @question << (quest_cat1_1 == [] ? "" : quest_cat1_1.sample)
+    @question << (quest_cat2_1 == [] ? "" : quest_cat2_1.sample)
+    @question << (quest_cat3_1 == [] ? "" :  quest_cat3_1.sample)
+    @question << (quest_cat4_1 == [] ? "" :  quest_cat4_1.sample)
+    @question << (quest_cat5_1 == [] ? "" :  quest_cat5_1.sample)
+    @question << (quest_cat1_2 == [] ? "" :  quest_cat1_2.sample)
+    @question << (quest_cat2_2 == [] ? "" :  quest_cat2_2.sample)
+    @question << (quest_cat3_2 == [] ? "" :  quest_cat3_2.sample)
+    @question << (quest_cat4_2 == [] ? "" :  quest_cat4_2.sample)
+    @question << (quest_cat5_2 == [] ? "" :  quest_cat5_2.sample)
+    @question << (quest_cat1_3 == [] ? "" :  quest_cat1_3.sample)
+    @question << (quest_cat2_3 == [] ? "" :  quest_cat2_3.sample)
+    @question << (quest_cat3_3 == [] ? "" :  quest_cat3_3.sample)
+    @question << (quest_cat4_3 == [] ? "" :  quest_cat4_3.sample)
+    @question << (quest_cat5_3 == [] ? "" :  quest_cat5_3.sample)
+    @question << (quest_cat1_4 == [] ? "" :  quest_cat1_4.sample)
+    @question << (quest_cat2_4 == [] ? "" :  quest_cat2_4.sample)
+    @question << (quest_cat3_4 == [] ? "" :  quest_cat3_4.sample)
+    @question << (quest_cat4_4 == [] ? "" :  quest_cat4_4.sample)
+    @question << (quest_cat5_4 == [] ? "" :  quest_cat5_4.sample)
+    @question << (quest_cat1_5 == [] ? "" :  quest_cat1_5.sample)
+    @question << (quest_cat2_5 == [] ? "" :  quest_cat2_5.sample)
+    @question << (quest_cat3_5 == [] ? "" :  quest_cat3_5.sample)
+    @question << (quest_cat4_5 == [] ? "" :  quest_cat4_5.sample)
+    @question << (quest_cat5_5 == [] ? "" :  quest_cat5_5.sample)
+
   end
 
   # DELETE /questions/1
@@ -69,6 +122,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params[:question]
+      params.require(:question).permit(:question, :answer, :difficulty, :categoria)
+      #params[:question]
     end
 end
