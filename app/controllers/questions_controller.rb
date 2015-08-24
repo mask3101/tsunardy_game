@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :game]
 
   # GET /questions
   # GET /questions.json
@@ -33,6 +33,14 @@ class QuestionsController < ApplicationController
       flash[:error] = "La pregunta no se pudo crear."
       render :new
     end
+  end
+
+  def game_question
+    
+  end
+
+  def game_ans
+    
   end
 
   # PATCH/PUT /questions/1

@@ -19,26 +19,28 @@
         </td>
     </tr>
     <% for i in 0..24 %>
+    <% binding.pry %>
     <% case i %>
     <% when 0 %>
     <tr class='game'>
         <td class='game'>
-          <%= game[i] != "" ? game[i].question : "" %>
+          <%= button_to game[i] != "" ? game[i].points : "", { action: question_path(id: game[i].id) }, form_class: "btn-game" %>
+          
       </td>
     <% when 4, 9, 14, 19 %>
     <td class='game'>
-      <%= game[i] != "" ? game[i].question : "" %>
+      <%= button_to game[i] != "" ? game[i].points : "", { action: question_path[game[i].id] }, form_class: "btn-game" %>
     </td>
 </tr>
 <tr class='game'>
   <% when 24 %>
   <td class='game'>
-    <%= game[i] != "" ? game[i].question : "" %>
+    <%= button_to game[i] != "" ? game[i].points : "", { action: question_path }, form_class: "btn-game" %>
   </td>
 </tr>
 <% else %>
 <td class='game'>
-  <%= game[i] != "" ? game[i].question : "" %>
+  <%= button_to game[i] != "" ? game[i].points : "", { action: question_path }, form_class: "btn-game" %>
 </td>
 <% end %>
     <% end %>

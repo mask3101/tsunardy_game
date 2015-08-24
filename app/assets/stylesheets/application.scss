@@ -114,6 +114,17 @@ table.game, td.game, tr.game {
 }
 
 
+.btn-game {
+    width: 100%;
+    height: 100%;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
 td.game {
   height: 70px;
   width: 20%;
