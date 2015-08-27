@@ -19,7 +19,6 @@ class QuestionsController < ApplicationController
 
   def answer
     @quest_info = Question.find(params[:pregunta])
-    binding.pry
 
   end
 
