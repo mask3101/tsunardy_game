@@ -1,51 +1,61 @@
 <div class='row'>
   <div class='span8 well'>
     <table class='game'>
-    <tr class='game'>
-        <td class='game td_header'>
-          <h3>Anime</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Video Juegos</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Peliculas</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Cultura Japonesa</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Miscelaneo</h3>
-        </td>
-    </tr>
-    <% for i in 0..24 %>
-    <% binding.pry %>
-    <% case i %>
-    <% when 0 %>
-    <tr class='game'>
-        <td class='game'>
-          <%= button_to game[i] != "" ? game[i].points : "", { action: question_path(id: game[i].id) }, form_class: "btn-game" %>
+      <tbody class='bradius'>
+      <tr class='game'>
+          <td class='game td_header'>
+            <h3>Anime</h3>
+          </td>
+          <td class='game td_header'>
+            <h3>Video Juegos</h3>
+          </td>
+          <td class='game td_header'>
+            <h3>Peliculas</h3>
+          </td>
+          <td class='game td_header'>
+            <h3>Cultura Japonesa</h3>
+          </td>
+          <td class='game td_header'>
+            <h3>Miscelaneo</h3>
+          </td>
+      </tr>
+      <% for i in 0..4 %>
+        <% for j in 0..4 %>
+          <% d = i + 1 %>
+          <% c = j + 1 %>  
+           
+          <% case j %>
+          <% when 0 %>
           
-      </td>
-    <% when 4, 9, 14, 19 %>
-    <td class='game'>
-      <%= button_to game[i] != "" ? game[i].points : "", { action: question_path[game[i].id] }, form_class: "btn-game" %>
-    </td>
-</tr>
-<tr class='game'>
-  <% when 24 %>
-  <td class='game'>
-    <%= button_to game[i] != "" ? game[i].points : "", { action: question_path }, form_class: "btn-game" %>
-  </td>
-</tr>
-<% else %>
-<td class='game'>
-  <%= button_to game[i] != "" ? game[i].points : "", { action: question_path }, form_class: "btn-game" %>
-</td>
-<% end %>
-    <% end %>
-      </td>
-    </tr>
+             <tr class='game'>
+              <td class='game'>
+                <%= form_tag("/question/question", method: "post") do %>
+                  <%= hidden_field_tag(:difficulty, d) %>
+                  <%= hidden_field_tag(:categoria, c) %>
+                  <%= render 'values', value: i %>
+                <% end %>
+              </td>
+          <% when 1,2,3 %>
+            <td class='game'>
+              <%= form_tag("/question/question", method: "post") do %>
+                  <%= hidden_field_tag(:difficulty, d) %>
+                  <%= hidden_field_tag(:categoria, c) %>
+                  <%= render 'values', value: i %>
+                <% end %>
+            </td>
+          <% when 4 %>
+            <td class='game'>
+              <%= form_tag("/question/question", method: "post") do %>
+                  <%= hidden_field_tag(:difficulty, d) %>
+                  <%= hidden_field_tag(:categoria, c) %>
+                  <%= render 'values', value: i %>
+                <% end %>
+            </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
     </table>
   </div>
 </div>

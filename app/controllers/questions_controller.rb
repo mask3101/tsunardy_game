@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy, :game]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions
   # GET /questions.json
@@ -15,6 +15,12 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+  end
+
+  def question
+    
+    quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
+    @quest_info = quest_info.sample
   end
 
   # GET /questions/1/edit
@@ -58,6 +64,11 @@ class QuestionsController < ApplicationController
   end
 
   def game
+    @question = Question.all
+    
+  end
+
+  def game1
     quest_cat1_1 = Question.where(:categoria => 1, :difficulty => 1)
     quest_cat2_1 = Question.where(:categoria => 2, :difficulty => 1)
     quest_cat3_1 = Question.where(:categoria => 3, :difficulty => 1)

@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root to: 'questions#game'
-  post '/answer/:id', to: 'questions#game_question'
-  post '/answer/:id', to: 'questions#game_ans'
+  post '/question/question', to: 'questions#question'
 
   resources :users
   resources :questions

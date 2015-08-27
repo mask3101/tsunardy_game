@@ -113,10 +113,14 @@ table.game, td.game, tr.game {
 
 }
 
+.bradius {
+  border-radius: 15px;
+  
+}
 
 .btn-game {
     width: 100%;
-    height: 100%;
+    height: 70px;
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
@@ -128,13 +132,11 @@ table.game, td.game, tr.game {
 td.game {
   height: 70px;
   width: 20%;
-  padding: 15px;
   background-color: blue;
     color: yellow;
     word-break: keep-all;
 }
 
 tr {
-    padding: 15px;
     text-align: center;
 }
