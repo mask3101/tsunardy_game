@@ -2,7 +2,6 @@
 <div class='row'>
   <div class='span8 well'>
     <table class='game'>
-<<<<<<< HEAD
       <tbody class='bradius'>
       <tr class='game'>
           <td class='game td_header'>
@@ -58,51 +57,6 @@
         <% end %>
       <% end %>
     </tbody>
-=======
-    <tr class='game'>
-        <td class='game td_header'>
-          <h3>Anime</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Video Juegos</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Peliculas</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Cultura Japonesa</h3>
-        </td>
-        <td class='game td_header'>
-          <h3>Miscelaneo</h3>
-        </td>
-    </tr>
-    <% for i in 0..24 %>
-    <% case i %>
-    <% when 0 %>
-    <tr class='game'>
-        <td class='game'>
-          <%= game[i] != "" ? game[i].question : "" %>
-      </td>
-    <% when 4, 9, 14, 19 %>
-    <td class='game'>
-      <%= game[i] != "" ? game[i].question : "" %>
-    </td>
-</tr>
-<tr class='game'>
-  <% when 24 %>
-  <td class='game'>
-    <%= game[i] != "" ? game[i].question : "" %>
-  </td>
-</tr>
-<% else %>
-<td class='game'>
-  <%= game[i] != "" ? game[i].question : "" %>
-</td>
-<% end %>
-    <% end %>
-      </td>
-    </tr>
->>>>>>> origin/Game-test
     </table>
   </div>
 </div>
