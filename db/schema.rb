@@ -11,10 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821152853) do
+ActiveRecord::Schema.define(version: 20150827062010) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_questions", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.boolean  "q_1_1"
+    t.boolean  "q_1_2"
+    t.boolean  "q_1_3"
+    t.boolean  "q_1_4"
+    t.boolean  "q_1_5"
+    t.boolean  "q_2_1"
+    t.boolean  "q_2_2"
+    t.boolean  "q_2_3"
+    t.boolean  "q_2_4"
+    t.boolean  "q_2_5"
+    t.boolean  "q_3_1"
+    t.boolean  "q_3_2"
+    t.boolean  "q_3_3"
+    t.boolean  "q_3_4"
+    t.boolean  "q_3_5"
+    t.boolean  "q_4_1"
+    t.boolean  "q_4_2"
+    t.boolean  "q_4_3"
+    t.boolean  "q_4_4"
+    t.boolean  "q_4_5"
+    t.boolean  "q_5_1"
+    t.boolean  "q_5_2"
+    t.boolean  "q_5_3"
+    t.boolean  "q_5_4"
+    t.boolean  "q_5_5"
+    t.boolean  "p1"
+    t.boolean  "p2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

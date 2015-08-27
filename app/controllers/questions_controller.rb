@@ -17,6 +17,12 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def answer
+    @quest_info = Question.find(params[:pregunta])
+    binding.pry
+
+  end
+
   def question
     
     quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
