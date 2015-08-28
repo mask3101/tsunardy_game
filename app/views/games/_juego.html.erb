@@ -30,27 +30,39 @@
           
              <tr class='game'>
               <td class='game'>
-                <%= form_tag("/question/question", method: "post") do %>
-                  <%= hidden_field_tag(:difficulty, d) %>
-                  <%= hidden_field_tag(:categoria, c) %>
-                  <%= render 'values', value: i %>
+                
+                <% if eval_block(i, j, @game) %>
+                  <%= form_tag("/question/question", method: "post") do %>
+                    <%= hidden_field_tag(:num, @game.id) %>
+                    <%= hidden_field_tag(:difficulty, d) %>
+                    <%= hidden_field_tag(:categoria, c) %>
+                    <%= render 'values', value: i%>
+                  <% end %>
                 <% end %>
               </td>
           <% when 1,2,3 %>
             <td class='game'>
-              <%= form_tag("/question/question", method: "post") do %>
+              
+              <% if eval_block(i, j, @game) %>
+                <%= form_tag("/question/question", method: "post") do %>
+                <%= hidden_field_tag(:num, @game.id) %>
                   <%= hidden_field_tag(:difficulty, d) %>
                   <%= hidden_field_tag(:categoria, c) %>
-                  <%= render 'values', value: i %>
+                  <%= render 'values', value: i%>
                 <% end %>
+              <% end %>
             </td>
           <% when 4 %>
             <td class='game'>
-              <%= form_tag("/question/question", method: "post") do %>
+              
+              <% if eval_block(i, j, @game) %>
+                <%= form_tag("/question/question", method: "post") do %>
+                <%= hidden_field_tag(:num, @game.id) %>
                   <%= hidden_field_tag(:difficulty, d) %>
                   <%= hidden_field_tag(:categoria, c) %>
-                  <%= render 'values', value: i %>
+                  <%= render 'values', value: i%>
                 <% end %>
+              <% end %>
             </td>
             </tr>
           <% end %>

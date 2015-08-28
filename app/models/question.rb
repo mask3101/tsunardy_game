@@ -1,5 +1,8 @@
 class Question < ActiveRecord::Base
 
+  has_many :game_questions
+  has_many :games, through: :game_questions
+
   validates :question, presence: true
   validates :answer, presence: true
   validates :difficulty, presence: true

@@ -19,12 +19,16 @@ class QuestionsController < ApplicationController
 
   def answer
     @quest_info = Question.find(params[:pregunta])
-
+    @id = params[:num]
   end
 
   def question
-    
+    #binding.pry
+    cat = params[:categoria]
+    dif = params[:difficulty]
+    eval_block(cat, dif, params[:num])
     quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
+    @id = params[:num]
     @quest_info = quest_info.sample
   end
 
@@ -73,60 +77,7 @@ class QuestionsController < ApplicationController
     
   end
 
-  def game1
-    quest_cat1_1 = Question.where(:categoria => 1, :difficulty => 1)
-    quest_cat2_1 = Question.where(:categoria => 2, :difficulty => 1)
-    quest_cat3_1 = Question.where(:categoria => 3, :difficulty => 1)
-    quest_cat4_1 = Question.where(:categoria => 4, :difficulty => 1)
-    quest_cat5_1 = Question.where(:categoria => 5, :difficulty => 1)
-    quest_cat1_2 = Question.where(:categoria => 1, :difficulty => 2)
-    quest_cat2_2 = Question.where(:categoria => 2, :difficulty => 2)
-    quest_cat3_2 = Question.where(:categoria => 3, :difficulty => 2)
-    quest_cat4_2 = Question.where(:categoria => 4, :difficulty => 2)
-    quest_cat5_2 = Question.where(:categoria => 5, :difficulty => 2)
-    quest_cat1_3 = Question.where(:categoria => 1, :difficulty => 3)
-    quest_cat2_3 = Question.where(:categoria => 2, :difficulty => 3)
-    quest_cat3_3 = Question.where(:categoria => 3, :difficulty => 3)
-    quest_cat4_3 = Question.where(:categoria => 4, :difficulty => 3)
-    quest_cat5_3 = Question.where(:categoria => 5, :difficulty => 3)
-    quest_cat1_4 = Question.where(:categoria => 1, :difficulty => 4)
-    quest_cat2_4 = Question.where(:categoria => 2, :difficulty => 4)
-    quest_cat3_4 = Question.where(:categoria => 3, :difficulty => 4)
-    quest_cat4_4 = Question.where(:categoria => 4, :difficulty => 4)
-    quest_cat5_4 = Question.where(:categoria => 5, :difficulty => 4)
-    quest_cat1_5 = Question.where(:categoria => 1, :difficulty => 5)
-    quest_cat2_5 = Question.where(:categoria => 2, :difficulty => 5)
-    quest_cat3_5 = Question.where(:categoria => 3, :difficulty => 5)
-    quest_cat4_5 = Question.where(:categoria => 4, :difficulty => 5)
-    quest_cat5_5 = Question.where(:categoria => 5, :difficulty => 5)
-    @question = []
-    @question << (quest_cat1_1 == [] ? "" : quest_cat1_1.sample)
-    @question << (quest_cat2_1 == [] ? "" : quest_cat2_1.sample)
-    @question << (quest_cat3_1 == [] ? "" :  quest_cat3_1.sample)
-    @question << (quest_cat4_1 == [] ? "" :  quest_cat4_1.sample)
-    @question << (quest_cat5_1 == [] ? "" :  quest_cat5_1.sample)
-    @question << (quest_cat1_2 == [] ? "" :  quest_cat1_2.sample)
-    @question << (quest_cat2_2 == [] ? "" :  quest_cat2_2.sample)
-    @question << (quest_cat3_2 == [] ? "" :  quest_cat3_2.sample)
-    @question << (quest_cat4_2 == [] ? "" :  quest_cat4_2.sample)
-    @question << (quest_cat5_2 == [] ? "" :  quest_cat5_2.sample)
-    @question << (quest_cat1_3 == [] ? "" :  quest_cat1_3.sample)
-    @question << (quest_cat2_3 == [] ? "" :  quest_cat2_3.sample)
-    @question << (quest_cat3_3 == [] ? "" :  quest_cat3_3.sample)
-    @question << (quest_cat4_3 == [] ? "" :  quest_cat4_3.sample)
-    @question << (quest_cat5_3 == [] ? "" :  quest_cat5_3.sample)
-    @question << (quest_cat1_4 == [] ? "" :  quest_cat1_4.sample)
-    @question << (quest_cat2_4 == [] ? "" :  quest_cat2_4.sample)
-    @question << (quest_cat3_4 == [] ? "" :  quest_cat3_4.sample)
-    @question << (quest_cat4_4 == [] ? "" :  quest_cat4_4.sample)
-    @question << (quest_cat5_4 == [] ? "" :  quest_cat5_4.sample)
-    @question << (quest_cat1_5 == [] ? "" :  quest_cat1_5.sample)
-    @question << (quest_cat2_5 == [] ? "" :  quest_cat2_5.sample)
-    @question << (quest_cat3_5 == [] ? "" :  quest_cat3_5.sample)
-    @question << (quest_cat4_5 == [] ? "" :  quest_cat4_5.sample)
-    @question << (quest_cat5_5 == [] ? "" :  quest_cat5_5.sample)
-
-  end
+  
 
   # DELETE /questions/1
   # DELETE /questions/1.json
@@ -148,5 +99,101 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:question, :answer, :difficulty, :categoria)
       #params[:question]
+    end
+
+    def eval_block(i, j, id)
+      i = i.to_i - 1
+      j = j.to_i - 1
+      case j
+      when 0
+       case i
+       when 0
+          Game.update(id, :q_1_1 => false)
+
+       when 1
+          Game.update(id, :q_1_2 => false)
+
+       when 2
+          Game.update(id, :q_1_3 => false)
+
+       when 3
+          Game.update(id, :q_1_4 => false)
+
+       when 4
+          Game.update(id, :q_1_5 => false)
+
+       end
+      when 1
+       case i
+       when 0
+          Game.update(id, :q_2_1 => false)
+
+       when 1
+          Game.update(id, :q_2_2 => false)
+       when 2
+          Game.update(id, :q_2_3 => false)
+
+       when 3
+          Game.update(id, :q_2_4 => false)
+
+       when 4
+          Game.update(id, :q_2_5 => false)
+
+       end
+      when 2
+       case i
+       when 0
+          Game.update(id, :q_3_1 => false)
+
+       when 1
+          Game.update(id, :q_3_2 => false)
+
+       when 2
+          Game.update(id, :q_3_3 => false)
+
+       when 3
+          Game.update(id, :q_3_4 => false)
+
+       when 4
+          Game.update(id, :q_3_5 => false)
+
+       end
+      when 3
+       case i
+       when 0
+          Game.update(id, :q_4_1 => false)
+
+       when 1
+          Game.update(id, :q_4_2 => false)
+
+       when 2
+          Game.update(id, :q_4_3 => false)
+
+       when 3
+          Game.update(id, :q_4_4 => false)
+
+       when 4
+          Game.update(id, :q_4_5 => false)
+
+       end
+      when 4
+       case i
+       when 0
+          Game.update(id, :q_5_1 => false)
+
+       when 1
+          Game.update(id, :q_5_2 => false)
+
+       when 2
+          Game.update(id, :q_5_3 => false)
+
+       when 3
+          Game.update(id, :q_5_4 => false)
+
+       when 4
+          Game.update(id, :q_5_5 => false)
+
+       end
+      end
     end
 end

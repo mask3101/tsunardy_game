@@ -1,5 +1,6 @@
 <%= @quest_info.question %>
 <%= form_tag("/question/answer", method: "post") do %>
   <%= hidden_field_tag(:pregunta, @quest_info.id) %>
+  <%= hidden_field_tag(:num, @id) %>
   <%= submit_tag("respuesta") %>
 <% end %>
