@@ -29,8 +29,8 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    #binding.pry
-    @game = Game.create(q_1_1: true, q_1_2: true, q_1_3: true, q_1_4: true, q_1_5: true, q_2_1: true, q_2_2: true, q_2_3: true, q_2_4: true, q_2_5: true, q_3_1: true, q_3_2: true, q_3_3: true, q_3_4: true, q_3_5: true, q_4_1: true, q_4_2: true, q_4_3: true, q_4_4: true, q_4_5: true, q_5_1: true, q_5_2: true, q_5_3: true, q_5_4: true, q_5_5: true, p1: 0, p2: 0)
+    binding.pry
+    #@game = Game.create(q_1_1: true, q_1_2: true, q_1_3: true, q_1_4: true, q_1_5: true, q_2_1: true, q_2_2: true, q_2_3: true, q_2_4: true, q_2_5: true, q_3_1: true, q_3_2: true, q_3_3: true, q_3_4: true, q_3_5: true, q_4_1: true, q_4_2: true, q_4_3: true, q_4_4: true, q_4_5: true, q_5_1: true, q_5_2: true, q_5_3: true, q_5_4: true, q_5_5: true, p1: 0, p2: 0)
     
     if @game.save
       redirect_to game_path(@game.id)

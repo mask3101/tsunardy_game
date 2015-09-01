@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828001855) do
+ActiveRecord::Schema.define(version: 20150901045040) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -27,33 +27,12 @@ ActiveRecord::Schema.define(version: 20150828001855) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.boolean  "q_1_1"
-    t.boolean  "q_1_2"
-    t.boolean  "q_1_3"
-    t.boolean  "q_1_4"
-    t.boolean  "q_1_5"
-    t.boolean  "q_2_1"
-    t.boolean  "q_2_2"
-    t.boolean  "q_2_3"
-    t.boolean  "q_2_4"
-    t.boolean  "q_2_5"
-    t.boolean  "q_3_1"
-    t.boolean  "q_3_2"
-    t.boolean  "q_3_3"
-    t.boolean  "q_3_4"
-    t.boolean  "q_3_5"
-    t.boolean  "q_4_1"
-    t.boolean  "q_4_2"
-    t.boolean  "q_4_3"
-    t.boolean  "q_4_4"
-    t.boolean  "q_4_5"
-    t.boolean  "q_5_1"
-    t.boolean  "q_5_2"
-    t.boolean  "q_5_3"
-    t.boolean  "q_5_4"
-    t.boolean  "q_5_5"
-    t.integer  "p1"
-    t.integer  "p2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "active"
+  end
+
+  create_table "players", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
