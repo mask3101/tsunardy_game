@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :rules]
 
   # GET /games
   # GET /games.json
@@ -41,7 +41,20 @@ class GamesController < ApplicationController
   end
 
   def rules
+    
     #binding.pry
+  end
+
+  def update2
+    respond_to do |format|
+      if @game.update(game_params)
+        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.json { render :show, status: :ok, location: @game }
+      else
+        format.html { render :edit }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /games/1
@@ -52,7 +65,7 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        format.html { render :edit }
+        format.html { render :rules }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
@@ -76,6 +89,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params[:game]
+      params.require(:game).permit(:num_players, :num_questions, :num_categories)
     end
 end

@@ -21,16 +21,10 @@
       <%= f.label :difficulty, "Muy Dificil", :value => 5 %>
     </div>
     <div class='control-group'>
-      <%= f.radio_button :categoria, 1, :checked => @question.categoria == 1 ? true  : false %>
-      <%= f.label :categoria, "Anime", :value => 1 %>
-      <%= f.radio_button :categoria, 2, :checked => @question.categoria == 2 ? true  : false %>
-      <%= f.label :categoria, "Video Juegos", :value => 2 %>
-      <%= f.radio_button :categoria, 3, :checked => @question.categoria == 3 ? true  : false %>
-      <%= f.label :categoria, "Peliculas", :value => 3 %>
-      <%= f.radio_button :categoria, 4, :checked => @question.categoria == 4 ? true  : false %>
-      <%= f.label :categoria, "Cultura Japonesa", :value => 4 %>
-      <%= f.radio_button :categoria, 5, :checked => @question.categoria == 5 ? true  : false %>
-      <%= f.label :categoria, "Miscelaneo", :value => 5 %>
+      <% @categories.each do |category| %>
+      <%= f.radio_button :categoria, category.id, :checked => false %>
+      <%= f.label :categoria, category.name, :value => category.id %>
+      <% end %>
     </div>
     <br/>
     <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-primary')%>

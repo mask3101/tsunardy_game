@@ -1,17 +1,11 @@
-<%= form_for(@category) do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul>
-      <% @category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="well">
+<%= form_for @category do |f| %>
+    <div class='control-group'>
+      <%= f.label 'Nombre de categoría' %>
+      <br/>
+      <%= f.text_field :name %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <br/>
+    <%= f.submit(@category.new_record? ? 'Nueva Categoría' : 'Actualizar Categoría', class: 'btn btn-primary')%>
 <% end %>
+</div>

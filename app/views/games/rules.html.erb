@@ -1,0 +1,21 @@
+<div class="well">
+<%= form_for @game do |f| %>
+    <div class='control-group'>
+      <%= f.label :num_categories, 'Numero de categorias' %>
+      <br/>
+      <%= f.text_field :num_categories %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :num_questions, 'Numero de preguntas' %>
+      <br/>
+      <%= f.text_field :num_questions %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :num_players, 'Numero de jugadores' %>
+      <br/>
+      <%= f.text_field :num_players %>
+    </div>
+    <br/>
+    <%= f.submit(@game.new_record? ? 'Nuevo Juego' : 'Actualizar Juego', class: 'btn btn-primary')%>
+<% end %>
+</div>
