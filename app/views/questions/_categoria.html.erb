@@ -1,11 +1,6 @@
-<% if question.categoria == 1%>
-  Anime
-<% elsif question.categoria == 2 %>
-  Video Juegos
-<% elsif question.categoria == 3 %>
-  Peliculas
-<% elsif question.categoria == 4 %>
-  Cultura Japonesa
-<% elsif question.categoria == 5 %>
-  Miscelaneo
-<% end %>
+<div class='control-group'>
+  <% @categories.each do |category| %>
+  <%= f.radio_button :categoria, category.id, :checked => false %>
+  <%= f.label :categoria, category.name, :value => category.id %>
+  <% end %>
+</div>

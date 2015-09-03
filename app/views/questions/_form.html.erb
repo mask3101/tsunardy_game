@@ -20,12 +20,7 @@
       <%= f.radio_button :difficulty, 5, :checked => @question.difficulty == 5 ? true  : false %>
       <%= f.label :difficulty, "Muy Dificil", :value => 5 %>
     </div>
-    <div class='control-group'>
-      <% @categories.each do |category| %>
-      <%= f.radio_button :categoria, category.id, :checked => false %>
-      <%= f.label :categoria, category.name, :value => category.id %>
-      <% end %>
-    </div>
+    <%= render 'categoria' %>
     <br/>
     <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-primary')%>
 <% end %>

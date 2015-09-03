@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get '/games/rules/:id', to: 'games#rules'
+  get '/games/:id/categories' => 'games#categories', as: :categories_games
   root to: 'games#index'
   get '/games/game', to: 'games#game'
   post '/questions/question', to: 'questions#question'
