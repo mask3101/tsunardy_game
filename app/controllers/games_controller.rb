@@ -29,24 +29,16 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    #@game = Game.create(q_1_1: true, q_1_2: true, q_1_3: true, q_1_4: true, q_1_5: true, q_2_1: true, q_2_2: true, q_2_3: true, q_2_4: true, q_2_5: true, q_3_1: true, q_3_2: true, q_3_3: true, q_3_4: true, q_3_5: true, q_4_1: true, q_4_2: true, q_4_3: true, q_4_4: true, q_4_5: true, q_5_1: true, q_5_2: true, q_5_3: true, q_5_4: true, q_5_5: true, p1: 0, p2: 0)
-    @game = Game.create(active: true)
-
+    
+    
+    @game = Game.create(game_params)
+    @game.num_categories = params[:game][:category_ids].size - 1
     if @game.save
-      redirect_to "/games/rules/#{@game.id}"
+      redirect_to new_game_player_path(@game.id)
     else
       flash[:error] = "No se pudo crear el juego."
       render :new
     end
-  end
-
-  def rules
-    
-    #binding.pry
-  end
-
-  def categories
-    @categories = Category.all
   end
 
   # PATCH/PUT /games/1
@@ -55,7 +47,7 @@ class GamesController < ApplicationController
     binding.pry
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to categories_games_path(@game.id), notice: 'Game was successfully updated.' }
+        format.html { redirect_to game_game_path(@game.id), notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
         format.html { render :rules }
@@ -82,6 +74,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:num_players, :num_questions, :num_categories)
+      params.require(:game).permit(:num_questions, category_ids: [])
     end
 end

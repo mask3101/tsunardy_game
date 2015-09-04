@@ -15,3 +15,19 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+
+
+var counter = 1;
+var limit = 9;
+function addInput(divName){
+     if (counter == limit)  {
+        var current = "user_" + (counter - 1)
+          alert("You have reached the limit of adding " + current + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          newdiv.innerHTML = "Jugador " + counter + " <br><input type='text' name='user_"+ counter +"'>";
+          document.getElementById(divName).appendChild(newdiv);
+          counter++;
+     }
+}

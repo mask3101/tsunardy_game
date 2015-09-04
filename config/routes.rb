@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  resources :players
+  #resources :players
   resources :questions
   resources :users
-  resources :games
+  resources :games do
+    resources :players
+  end
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   get '/games/rules/:id', to: 'games#rules'
-  get '/games/:id/categories' => 'games#categories', as: :categories_games
+  #get '/games/:id/players' => 'games#categories', as: :new_game_player
   root to: 'games#index'
   get '/games/game', to: 'games#game'
   post '/questions/question', to: 'questions#question'

@@ -14,6 +14,8 @@ class PlayersController < ApplicationController
 
   # GET /players/new
   def new
+    binding.pry
+    @game = Game.find(params[:game_id])
     @player = Player.new
   end
 

@@ -1,17 +1,12 @@
-<%= form_for(@player) do |f| %>
-  <% if @player.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
-
-      <ul>
-      <% @player.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+<div class="well">
+<%= form_for @player do |f| %>
+  <div class='control-group' id='users'>
+    <input type="button" value="Add another text input" onclick="addInput('users');">
+  </div>
+  <div class='control-group'>
+    <%= f.label :num_players, 'Numero de jugadores' %>
+    <br/>
+    <%= f.text_field :num_players %>
   </div>
 <% end %>
+</div>
