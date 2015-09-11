@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
 
   def answer
     @quest_info = Question.find(params[:pregunta])
-    @id = params[:num]
+    @id = params[:num_game]
   end
 
   def question

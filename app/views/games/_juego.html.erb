@@ -1,6 +1,13 @@
+<<<<<<< Updated upstream
 <% if @game.table_values[0] %>
   <%= render 'winner' %>
 <% else %>
+=======
+
+  <% if @game.table_values[0] == true %>
+    <%= render 'winner' %>
+  <% else %>
+>>>>>>> Stashed changes
 <div id="side" class="row">
   <% @player.each do |player| %>
   <div class="well text-center">
