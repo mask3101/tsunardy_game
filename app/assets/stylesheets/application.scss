@@ -35,7 +35,7 @@ border-color: #eed3d7;
 }
 
 .container {
- margin-left: 135px
+ margin-left: 30px
 }
 
 .navbar .nav > li > a.brand {
@@ -58,10 +58,6 @@ div.nav_item {
  }
 }
 
-div.comment_votes {
- padding: 10px;
-}
-
 #wrapper {
  min-height:100%;
  position:relative;
@@ -71,10 +67,11 @@ div.comment_votes {
  padding:10px;
 }
 #content {
- padding-bottom:100px; /* Height of the footer element */
+ padding-bottom:10px; /* Height of the footer element */
  border-bottom-color: #ededff;
 }
 #footer {
+ clear:both;
  border-collapse: separate;
  border-spacing: 2px;
  border-top-color: #ededff;
@@ -87,7 +84,7 @@ div.comment_votes {
 
 table.td_header, table.game {
   width: 90%;
-  height: 20%;
+  height: 20px;
 
 }
 
@@ -139,4 +136,16 @@ td.game {
 
 tr {
     text-align: center;
+}
+
+
+
+#main_container {
+float:right;
+width:87%;
+}
+#side {
+float:left;
+width:12%;
+
 }

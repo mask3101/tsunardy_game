@@ -14,7 +14,6 @@ class PlayersController < ApplicationController
 
   # GET /players/new
   def new
-    binding.pry
     @game = Game.find(params[:game_id])
     @player = Player.new
   end
@@ -26,16 +25,29 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
-    @player = Player.new(player_params)
+    #binding.pry
+    #params[:name].each do |name|
+    validation = 0
+    @game = Game.find(params[:game_id])
+    #binding.pry
+    if params[:name].include?("")
+      validation = 1
+      @player = Player.new
+    end
+    #@player = Player.new(player_params)
 
-    respond_to do |format|
-      if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
-        format.json { render :show, status: :created, location: @player }
-      else
-        format.html { render :new }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
+    if validation == 0
+      #flash[:notice] = "La pregunta se ha creado."
+      params[:name].each do |name|
+      #binding.pry
+        @player = Player.create(:name => name, :game_id => params[:game_id].to_i)
       end
+      redirect_to games_game_path(@game.id)
+    else
+      #player = Player.find_by game_id: @game_id
+      #binding.pry
+      flash[:error] = "El jugador no se pudo crear, verificar que ningun nombre quedó vacio"
+      render :new
     end
   end
 
@@ -71,6 +83,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params[:player]
+      params.require(:player).permit(name: [])
     end
 end

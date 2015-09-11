@@ -14,7 +14,9 @@ class GamesController < ApplicationController
   end
 
   def game
-    
+    #game_categories = GameCategory.where(game_id: params[:id])
+    @player = Player.where(game_id: params[:id])
+    @game = Game.find(params[:id])
   end
 
   # GET /games/new
@@ -33,6 +35,17 @@ class GamesController < ApplicationController
     
     @game = Game.create(game_params)
     @game.num_categories = params[:game][:category_ids].size - 1
+    i = 0
+    loop do
+      if i == 0
+        @game.table_values << false
+      else
+        @game.table_values << true
+      end
+      #binding.pry
+      break if i == (@game.num_categories * @game.num_questions)
+      i += 1
+    end
     if @game.save
       redirect_to new_game_player_path(@game.id)
     else

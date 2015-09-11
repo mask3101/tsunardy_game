@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/games/rules/:id', to: 'games#rules'
   #get '/games/:id/players' => 'games#categories', as: :new_game_player
   root to: 'games#index'
-  get '/games/game', to: 'games#game'
+  get '/games/:id/game', to: 'games#game', as: :games_game
   post '/questions/question', to: 'questions#question'
   post '/questions/answer', to: 'questions#answer'
 
