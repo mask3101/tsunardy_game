@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
   end
 
   def question
-    binding.pry
+    #binding.pry
 
     cat = params[:categoria]
     dif = params[:difficulty]
@@ -55,11 +55,11 @@ class QuestionsController < ApplicationController
   end
 
   def game_question
-    
+
   end
 
   def game_ans
-    
+
   end
 
   # PATCH/PUT /questions/1
@@ -78,10 +78,10 @@ class QuestionsController < ApplicationController
 
   def game
     @question = Question.all
-    
+
   end
 
-  
+
 
   # DELETE /questions/1
   # DELETE /questions/1.json
@@ -105,5 +105,5 @@ class QuestionsController < ApplicationController
       #params[:question]
     end
 
-    
+
 end

@@ -1,4 +1,6 @@
-<div>
+<% if @game.table_values[0] %>
+  <%= render 'winner' %>
+<% else %>
 <div id="side" class="row">
   <% @player.each do |player| %>
   <div class="well text-center">
@@ -18,7 +20,7 @@
         <% for i in 0..@game.num_categories-1 %>
           <% for j in 0..@game.num_questions-1 %>
             <% d = i + 1 %>
-            <% c = j + 1 %> 
+            <% c = j + 1 %>
             <% if j == 0 %>
               <tr class='game'>
             <% end %>
@@ -42,4 +44,4 @@
       </tbody>
     </table>
 </div>
-</div>
+<% end %>
