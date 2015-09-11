@@ -16,64 +16,29 @@
         </tr>
         <% id_val = 1 %>
         <% for i in 0..@game.num_categories-1 %>
-        <% for j in 0..@game.num_questions-1 %>
-        <% d = i + 1 %>
-          <% c = j + 1 %> 
-          <% case j %>
-          <% when 0 %>
-          
-             <tr class='game'>
-              <td class='game'>
-                
-                <% if eval_block(id_val, @game) %>
-                  <%= form_tag("/question/question", method: "post") do %>
-                    <%= hidden_field_tag(:num, @game.id) %>
-                    <%= hidden_field_tag(:difficulty, d) %>
-                    <%= hidden_field_tag(:categoria, c) %>
-                    <%= render 'values', value: d, id_val: id_val %>
-                    
-                  <% end %>
-                  
-                <% end %>
-                <% id_val += 1 %>
-              </td>
-        
-          <% when @game.num_questions-1 %>
-            <td class='game'>
-              
-              <% if eval_block(id_val, @game) %>
-                <%= form_tag("/question/question", method: "post") do %>
-                  <%= hidden_field_tag(:num, @game.id) %>
-                  <%= hidden_field_tag(:difficulty, d) %>
-                  <%= hidden_field_tag(:categoria, c) %>
-                  <%= render 'values', value: d, id_val: id_val %>
-                  
-                <% end %>
-                
-              <% end %>
-              <% id_val += 1 %>
-            </td>
-            </tr>
-
-            <% else %>
-              <td class='game'>
-              
-              <% if eval_block(id_val, @game) %>
-                <%= form_tag("/question/question", method: "post") do %>
-                  <%= hidden_field_tag(:num, @game.id) %>
-                  <%= hidden_field_tag(:difficulty, d) %>
-                  <%= hidden_field_tag(:categoria, c) %>
-                  <%= render 'values', value: d, id_val: id_val %>
-                  
-                <% end %>
-                
-              <% end %>
-              <% id_val += 1 %>
-            </td>
-
+          <% for j in 0..@game.num_questions-1 %>
+            <% d = i + 1 %>
+            <% c = j + 1 %> 
+            <% if j == 0 %>
+              <tr class='game'>
             <% end %>
+            <td class='game'>
+              <% if eval_block(id_val, @game) %>
+                <%= form_tag("/questions/question", method: "post") do %>
+                  <%= hidden_field_tag(:num_game, @game.id) %>
+                  <%= hidden_field_tag(:num, id_val) %>
+                  <%= hidden_field_tag(:difficulty, d) %>
+                  <%= hidden_field_tag(:categoria, c) %>
+                  <%= render 'values', value: d, id_val: id_val %>
+                <% end %>
+              <% end %>
+              <% id_val += 1 %>
+            </td>
+            <% if j == @game.num_questions-1 %>
+              </tr>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
       </tbody>
     </table>
 </div>
