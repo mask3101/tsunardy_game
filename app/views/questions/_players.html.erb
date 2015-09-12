@@ -1,0 +1,18 @@
+<table border="0" width="100%">
+    <tbody>
+        <td>
+        <ul class="nav">
+          <% @player.each do |player| %>
+            <li>
+              <div class='nav_item'>
+                <div class="well text-center" style="width:100%">
+                  <%= player.name %><br/><%= player.points %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </td>
+      </tr>
+    </tbody>
+  </table>

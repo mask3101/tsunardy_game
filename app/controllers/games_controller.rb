@@ -14,9 +14,14 @@ class GamesController < ApplicationController
   end
 
   def game
+
     #game_categories = GameCategory.where(game_id: params[:id])
     @player = Player.where(game_id: params[:id])
     @game = Game.find(params[:id])
+    #binding.pry
+    if (@game.table_values.all? {|value| value == false })
+      @game.table_values[0] = true
+    end
   end
 
   # GET /games/new

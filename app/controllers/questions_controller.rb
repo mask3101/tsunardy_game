@@ -19,8 +19,10 @@ class QuestionsController < ApplicationController
   end
 
   def answer
+    #binding.pry
     @quest_info = Question.find(params[:pregunta])
     @id = params[:num_game]
+    @player = Player.where(game_id: params[:num_game])
   end
 
   def question
@@ -34,6 +36,7 @@ class QuestionsController < ApplicationController
     quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
     @id = params[:num_game]
     @quest_info = quest_info.sample
+    #binding.pry
   end
 
   # GET /questions/1/edit
