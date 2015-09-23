@@ -1,0 +1,12 @@
+<div class="well">
+  <%= form_for [@game, @player] do |f| %>
+
+    <div class='control-group' id='users'>
+      <input type="button" class="btn btn-success" value="Agregar Jugador" onclick="addInput('users');">
+    </div>
+    <br/>
+    <div class='control-group'>
+      <%= f.submit(@player.new_record? ? 'Agregar Jugadores' : 'Actualizar Juego', class: 'btn btn-primary')%>
+    </div>
+  <% end %>
+</div>

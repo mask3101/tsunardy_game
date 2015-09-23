@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :update, :destroy, :rules, :categories]
 
   # GET /games
   # GET /games.json
@@ -14,7 +14,14 @@ class GamesController < ApplicationController
   end
 
   def game
-    
+
+    #game_categories = GameCategory.where(game_id: params[:id])
+    @player = Player.where(game_id: params[:id])
+    @game = Game.find(params[:id])
+    #binding.pry
+    if (@game.table_values.all? {|value| value == false })
+      @game.table_values[0] = true
+    end
   end
 
   # GET /games/new
@@ -29,11 +36,21 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    binding.pry
-    
-    
+    @game = Game.create(game_params)
+    @game.num_categories = params[:game][:category_ids].size - 1
+    i = 0
+    loop do
+      if i == 0
+        @game.table_values << false
+      else
+        @game.table_values << true
+      end
+      #binding.pry
+      break if i == (@game.num_categories * @game.num_questions)
+      i += 1
+    end
     if @game.save
-      redirect_to game_path(@game.id)
+      redirect_to new_game_player_path(@game.id)
     else
       flash[:error] = "No se pudo crear el juego."
       render :new
@@ -43,12 +60,13 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+        format.html { redirect_to game_game_path(@game.id), notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
-        format.html { render :edit }
+        format.html { render :rules }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
@@ -72,6 +90,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params[:game]
+      params.require(:game).permit(:num_questions, category_ids: [])
     end
 end

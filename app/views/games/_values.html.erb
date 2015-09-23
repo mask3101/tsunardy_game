@@ -1,12 +1,1 @@
-<% case value %>
-<% when 0 %>
-  <%= submit_tag("100", :class => "btn-game") %>
-<% when 1 %>
-  <%= submit_tag("200", :class => "btn-game") %>
-<% when 2 %>
-  <%= submit_tag("300", :class => "btn-game") %>
-<% when 3 %>
-  <%= submit_tag("400", :class => "btn-game") %>
-<% when 4 %>
-  <%= submit_tag("500", :class => "btn-game") %>
-<% end %>  
+<%= submit_tag(value * 100, :class => "btn-game", :id => id_val) %>

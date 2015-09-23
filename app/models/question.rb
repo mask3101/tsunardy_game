@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-
+  belongs_to :category
   has_many :game_questions
   has_many :games, through: :game_questions
 
@@ -11,18 +11,7 @@ class Question < ActiveRecord::Base
   before_save :set_points, :activate_question_act
 
   def set_points
-    case self.difficulty
-    when 1
-    self.points = 100
-    when 2
-    self.points = 200
-    when 3
-    self.points = 300
-    when 4
-    self.points = 400
-    when 5
-    self.points = 500
-    end
+    self.points = self.difficulty.to_i * 100
   end
 
   def activate_question_act

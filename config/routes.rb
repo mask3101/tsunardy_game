@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
+  #resources :players
   resources :questions
   resources :users
-  resources :games
+  resources :games do
+    resources :players
+  end
+  resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get '/games/rules/:id', to: 'games#rules'
+  #get '/games/:id/players' => 'games#categories', as: :new_game_player
   root to: 'games#index'
-  get '/game/game', to: 'games#game'
-  post '/question/question', to: 'questions#question'
-  post '/question/answer', to: 'questions#answer'
+  get '/games/:id/game', to: 'games#game', as: :games_game
+  post '/questions/question', to: 'questions#question'
+  post '/questions/answer', to: 'questions#answer'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

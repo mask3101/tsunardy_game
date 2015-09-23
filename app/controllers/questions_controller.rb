@@ -15,21 +15,45 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+    @categories = Category.all
+  end
+
+  def sum
+    
+    player = params[:quest_info]
+    player.points = player.points 
+    respond_to do |format|
+      format.html do
+        if @vote.valid?  
+          flash[:notice] = "Your vote is counted"
+        else
+          flash[:error] = "You can only vote in a post once"
+        end
+        redirect_to :back
+      end
+      format.js 
+    end
   end
 
   def answer
+    #binding.pry
     @quest_info = Question.find(params[:pregunta])
-    @id = params[:num]
+    @id = params[:num_game]
+    @player = Player.where(game_id: params[:num_game])
   end
 
   def question
     #binding.pry
+
     cat = params[:categoria]
     dif = params[:difficulty]
-    eval_block(cat, dif, params[:num])
+    game = Game.find(params[:num_game])
+    game.table_values[params[:num].to_i] = false
+    game.save
     quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
-    @id = params[:num]
+    @id = params[:num_game]
     @quest_info = quest_info.sample
+    #binding.pry
   end
 
   # GET /questions/1/edit
@@ -51,11 +75,11 @@ class QuestionsController < ApplicationController
   end
 
   def game_question
-    
+
   end
 
   def game_ans
-    
+
   end
 
   # PATCH/PUT /questions/1
@@ -74,10 +98,10 @@ class QuestionsController < ApplicationController
 
   def game
     @question = Question.all
-    
+
   end
 
-  
+
 
   # DELETE /questions/1
   # DELETE /questions/1.json
@@ -101,99 +125,5 @@ class QuestionsController < ApplicationController
       #params[:question]
     end
 
-    def eval_block(i, j, id)
-      i = i.to_i - 1
-      j = j.to_i - 1
-      case j
-      when 0
-       case i
-       when 0
-          Game.update(id, :q_1_1 => false)
 
-       when 1
-          Game.update(id, :q_1_2 => false)
-
-       when 2
-          Game.update(id, :q_1_3 => false)
-
-       when 3
-          Game.update(id, :q_1_4 => false)
-
-       when 4
-          Game.update(id, :q_1_5 => false)
-
-       end
-      when 1
-       case i
-       when 0
-          Game.update(id, :q_2_1 => false)
-
-       when 1
-          Game.update(id, :q_2_2 => false)
-       when 2
-          Game.update(id, :q_2_3 => false)
-
-       when 3
-          Game.update(id, :q_2_4 => false)
-
-       when 4
-          Game.update(id, :q_2_5 => false)
-
-       end
-      when 2
-       case i
-       when 0
-          Game.update(id, :q_3_1 => false)
-
-       when 1
-          Game.update(id, :q_3_2 => false)
-
-       when 2
-          Game.update(id, :q_3_3 => false)
-
-       when 3
-          Game.update(id, :q_3_4 => false)
-
-       when 4
-          Game.update(id, :q_3_5 => false)
-
-       end
-      when 3
-       case i
-       when 0
-          Game.update(id, :q_4_1 => false)
-
-       when 1
-          Game.update(id, :q_4_2 => false)
-
-       when 2
-          Game.update(id, :q_4_3 => false)
-
-       when 3
-          Game.update(id, :q_4_4 => false)
-
-       when 4
-          Game.update(id, :q_4_5 => false)
-
-       end
-      when 4
-       case i
-       when 0
-          Game.update(id, :q_5_1 => false)
-
-       when 1
-          Game.update(id, :q_5_2 => false)
-
-       when 2
-          Game.update(id, :q_5_3 => false)
-
-       when 3
-          Game.update(id, :q_5_4 => false)
-
-       when 4
-          Game.update(id, :q_5_5 => false)
-
-       end
-      end
-    end
 end
