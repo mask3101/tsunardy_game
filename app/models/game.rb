@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
 
   validates :category_ids, presence: true
   validates :num_questions, presence: true
+  validates :tiempo, presence: true
+  validates :game_name, presence: true
 
   serialize :table_values, Array
 

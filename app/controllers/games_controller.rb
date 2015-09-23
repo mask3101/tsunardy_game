@@ -38,29 +38,36 @@ class GamesController < ApplicationController
   def create
     @game = Game.create(game_params)
     @game.num_categories = params[:game][:category_ids].size - 1
-    i = 0
-    loop do
-      if i == 0
-        @game.table_values << false
-      else
-        @game.table_values << true
+    #binding.pry
+    if (@game.num_categories > 0 && @game.num_categories != nil) && (@game.num_questions > 0 && @game.num_questions != nil) && (@game.tiempo.to_i > 0 && @game.tiempo != nil)
+      i = 0
+      loop do
+        if i == 0
+          @game.table_values << false
+        else
+          @game.table_values << true
+        end
+        #binding.pry
+        break if i == (@game.num_categories * @game.num_questions)
+        i += 1
       end
-      #binding.pry
-      break if i == (@game.num_categories * @game.num_questions)
-      i += 1
-    end
-    if @game.save
-      redirect_to new_game_player_path(@game.id)
-    else
-      flash[:error] = "No se pudo crear el juego."
+      if @game.save
+        redirect_to new_game_player_path(@game.id)
+      else
+        flash[:error] = "No se pudo crear el juego. Favor de llenar los campos faltantes"
+        render :new
+      end
+    elsif @game.tiempo == 0
+      flash[:error] = "El tiempo tiene que ser un número mayor"
       render :new
     end
+
   end
 
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
-    binding.pry
+    #binding.pry
     respond_to do |format|
       if @game.update(game_params)
         format.html { redirect_to game_game_path(@game.id), notice: 'Game was successfully updated.' }
@@ -90,6 +97,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:num_questions, category_ids: [])
+      params.require(:game).permit(:game_name, :tiempo, :num_questions, category_ids: [])
     end
 end

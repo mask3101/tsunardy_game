@@ -2,13 +2,16 @@
   <%= render 'winner' %>
 <% else %>
 <div id="side" class="row">
+</br>
   <% @player.each do |player| %>
   <div class="well text-center">
     <%= player.name %><br/><%= player.points %>
   </div>
   <% end %>
 </div>
-<div id="main_container">
+<div class="text-center" id="main_container">
+  <div><h1 class="text-center"><%= @game.game_name.upcase.html_safe %></h1></div>
+  <div class="text-center">
     <table class='game'>
         <tbody class='bradius'>
           <tr class='game'>
@@ -17,8 +20,8 @@
             <% end %>
         </tr>
         <% id_val = 1 %>
-        <% for i in 0..@game.num_categories-1 %>
-          <% for j in 0..@game.num_questions-1 %>
+        <% for i in 0..@game.num_questions-1 %>
+          <% for j in 0..@game.num_categories-1 %>
             <% d = i + 1 %>
             <% c = j + 1 %>
             <% if j == 0 %>
@@ -43,5 +46,6 @@
         <% end %>
       </tbody>
     </table>
+  </div>
 </div>
 <% end %>

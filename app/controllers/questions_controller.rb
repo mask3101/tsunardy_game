@@ -52,6 +52,9 @@ class QuestionsController < ApplicationController
     game.save
     quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
     @id = params[:num_game]
+    @game = Game.find(params[:num_game])
+    gon.tiempo = @game.tiempo
+
     @quest_info = quest_info.sample
     #binding.pry
   end

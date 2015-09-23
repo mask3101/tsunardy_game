@@ -1,5 +1,17 @@
 <div class="well">
 <%= form_for @game do |f| %>
+  <div class='control-group'>
+      <%= f.label :game_name, 'Nombre del Juego' %>
+      <br/>
+      <%= f.text_field :game_name %>
+    </div>
+  </br>
+    <div class='control-group'>
+      <%= f.label :tiempo, 'Tiempo para preguntas (segundos)' %>
+      <br/>
+      <%= f.text_field :tiempo %>
+    </div>
+  </br>
   <div class="control-group">
     <%= f.label :category_ids, 'Selecciona las Categorias' %>
     <div class='checkbox'>
