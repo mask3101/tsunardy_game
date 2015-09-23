@@ -39,7 +39,7 @@ class GamesController < ApplicationController
     @game = Game.create(game_params)
     @game.num_categories = params[:game][:category_ids].size - 1
     #binding.pry
-    if (@game.num_categories > 0 && @game.num_categories != nil) && (@game.num_questions > 0 && @game.num_questions != nil) && (@game.tiempo.to_i > 0 && @game.tiempo != nil)
+    if (@game.num_categories > 0 && @game.num_categories != nil)
       i = 0
       loop do
         if i == 0

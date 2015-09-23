@@ -20,13 +20,11 @@
             <% end %>
         </tr>
         <% id_val = 1 %>
-        <% for i in 0..@game.num_questions-1 %>
-          <% for j in 0..@game.num_categories-1 %>
-            <% d = i + 1 %>
-            <% c = j + 1 %>
-            <% if j == 0 %>
-              <tr class='game'>
-            <% end %>
+        <% for i in 1..@game.num_questions %>
+          <tr class='game'>
+          <% for j in 1..@game.categories.size %>
+            <% d = i %>
+            <% c = j %>
             <td class='game'>
               <% if eval_block(id_val, @game) %>
                 <%= form_tag("/questions/question", method: "post") do %>
@@ -39,10 +37,8 @@
               <% end %>
               <% id_val += 1 %>
             </td>
-            <% if j == @game.num_questions-1 %>
-              </tr>
-            <% end %>
           <% end %>
+          </tr>
         <% end %>
       </tbody>
     </table>
