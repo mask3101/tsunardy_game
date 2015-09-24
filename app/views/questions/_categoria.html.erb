@@ -1,6 +1,0 @@
-<div class='control-group'>
-  <% @categories.each do |category| %>
-  <%= f.radio_button :categoria, category.id, :checked => false %>
-  <%= f.label :categoria, category.name, :value => category.id %>
-  <% end %>
-</div>

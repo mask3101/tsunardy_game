@@ -9,18 +9,16 @@
       <%= f.text_field :answer %>
     </div>
     <div class='control-group'>
-      <%= f.radio_button :difficulty, 1, :checked => @question.difficulty == 1 ? true  : false %>
-      <%= f.label :difficulty, "Muy Facil", :value => 1 %>
-      <%= f.radio_button :difficulty, 2, :checked => @question.difficulty == 2 ? true  : false %>
-      <%= f.label :difficulty, "Facil", :value => 2 %>
-      <%= f.radio_button :difficulty, 3, :checked => @question.difficulty == 3 ? true  : false %>
-      <%= f.label :difficulty, "Medio", :value => 3 %>
-      <%= f.radio_button :difficulty, 4, :checked => @question.difficulty == 4 ? true  : false %>
-      <%= f.label :difficulty, "Dificil", :value => 4 %>
-      <%= f.radio_button :difficulty, 5, :checked => @question.difficulty == 5 ? true  : false %>
-      <%= f.label :difficulty, "Muy Dificil", :value => 5 %>
+      <%= f.label :difficulty %>
+      <%= f.text_field :difficulty %>
     </div>
-    <%= render 'categoria' %>
+    <div class='control-group'>
+  <% @categories.each do |category| %>
+
+  <%= f.radio_button :categoria, category.id, :checked => false %>
+  <%= f.label :categoria, category.name, :value => category.id %>
+  <% end %>
+</div>
     <br/>
     <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-primary')%>
 <% end %>

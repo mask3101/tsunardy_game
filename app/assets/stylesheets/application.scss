@@ -35,7 +35,11 @@ border-color: #eed3d7;
 }
 
 .container {
- margin-left: 30px;
+  margin-left: 20px;
+    margin-right: 20px;
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 90%;
 }
 
 .navbar .nav > li > a.brand {
@@ -82,7 +86,7 @@ div.nav_item {
  left:0;
 }
 
-table.td_header, table.game {
+table.td_header {
   align-items: center;
   height: 50px;
   width: 180px;
@@ -103,35 +107,10 @@ td a {
     width:100%;
 }
 table.game {
-  border: 0px solid black;
-  border-collapse: collapse;
-   border-radius: 15px;
-   background: -webkit-linear-gradient(#000009, #000066, #000009); /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(#000009, #000066, #000009); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#000009, #000066, #000009); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#000009, #000066, #000009); /* For Firefox 3.6 to 15 */
   background: linear-gradient(#000009, #000066, #000009); /* Standard syntax */
-
-}
-
-td.game, tr.game {
-  border: 1px solid #686868;
-  border-radius: 12px;
-   /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-  -webkit-border-radius: 12px;
-  /* Firefox 1-3.6 */
-  -moz-border-radius: 12px;
-  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-   border-collapse: collapse;
-   background: -webkit-linear-gradient(#000009, #000066, #000009); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#000009, #000066, #000009); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#000009, #000066, #000009); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#000009, #000066, #000009); /* Standard syntax */
-
-}
-
-.bradius {
-  border-radius: 15px;
-  border: 0px;
 
 }
 
@@ -147,6 +126,14 @@ td.game, tr.game {
 }
 
 td.game {
+  text-align: center;
+  border: 1px solid #686868;
+  border-collapse: collapse;
+   border-radius: 15px;
+   background: -webkit-linear-gradient(#000009, #000066, #000009); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#000009, #000066, #000009); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#000009, #000066, #000009); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#000009, #000066, #000009); /* Standard syntax */
   height: 70px;
   width: 180px;
   background-color: blue;
@@ -154,17 +141,21 @@ td.game {
     word-break: keep-all;
 }
 
-tr {
-    text-align: center;
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
 }
 
-
-
 #main_container {
+padding-right: 16%;
 float:right;
 width:87%;
 }
 #side {
+
+margin-left: 0px;
+padding-left: 10px;
 float:left;
 width:12%;
 

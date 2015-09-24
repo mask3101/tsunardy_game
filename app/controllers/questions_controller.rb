@@ -61,6 +61,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /questions

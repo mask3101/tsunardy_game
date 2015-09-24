@@ -9,11 +9,11 @@
   </div>
   <% end %>
 </div>
-<div class="text-center" id="main_container">
+<div id="main_container">
   <div><h1 class="text-center"><%= @game.game_name.upcase.html_safe %></h1></div>
-  <div class="text-center">
-    <table class='game text-center'>
-        <tbody class='bradius'>
+  <div>
+    <table class='game center-table'>
+        <tbody>
           <tr class='game'>
             <% @game.categories.each do |category| %>
               <td class='game td_header'><%= category.name %></td>
@@ -27,7 +27,8 @@
             <% c = j %>
             <td class='game'>
               <% if eval_block(id_val, @game) %>
-                <%= form_tag("/questions/question", method: "post") do %>
+                <%= form_tag("/questions/question", method: "post", style: "
+    margin-bottom: 0px") do %>
                   <%= hidden_field_tag(:num_game, @game.id) %>
                   <%= hidden_field_tag(:num, id_val) %>
                   <%= hidden_field_tag(:difficulty, d) %>
