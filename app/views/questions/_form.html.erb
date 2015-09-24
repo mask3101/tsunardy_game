@@ -14,9 +14,13 @@
     </div>
     <div class='control-group'>
   <% @categories.each do |category| %>
-
-  <%= f.radio_button :categoria, category.id, :checked => false %>
-  <%= f.label :categoria, category.name, :value => category.id %>
+    <% if @question.new_record? || category.id != @question.category_id %>
+      <%= f.radio_button :category_id, category.id, :checked => false %>
+      <%= f.label :category_id, category.name, :value => category.id %>
+    <% else  %>
+      <%= f.radio_button :category_id, category.id, :checked => true %>
+      <%= f.label :category_id, category.name, :value => category.id %>
+    <% end -%>
   <% end %>
 </div>
     <br/>
