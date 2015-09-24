@@ -45,12 +45,12 @@ class QuestionsController < ApplicationController
   def question
     #binding.pry
 
-    cat = params[:categoria]
+    cat = params[:category_id]
     dif = params[:difficulty]
     game = Game.find(params[:num_game])
     game.table_values[params[:num].to_i] = false
     game.save
-    quest_info = Question.where(:categoria => params[:categoria], :difficulty => params[:difficulty])
+    quest_info = Question.where(:category_id => params[:category_id], :difficulty => params[:difficulty])
     @id = params[:num_game]
     @game = Game.find(params[:num_game])
     gon.tiempo = @game.tiempo
@@ -125,7 +125,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question, :answer, :difficulty, :categoria)
+      params.require(:question).permit(:question, :answer, :difficulty, :category_id)
       #params[:question]
     end
 
