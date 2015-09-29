@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    #send_data @question.data, :type => @question.mime_type, :disposition => 'inline'
+
   end
 
   # GET /questions/new
@@ -89,6 +91,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @question.update(question_params)
         format.html { redirect_to @question, notice: 'Question was successfully updated.' }

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   #resources :players
-  resources :questions
+  resources :questions do
+    resources :images
+  end
   resources :users
   resources :games do
     resources :players

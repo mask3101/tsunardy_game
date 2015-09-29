@@ -23,6 +23,7 @@
     <% end -%>
   <% end %>
 </div>
+  <div class="control-group"><%= f.file_field :data %></div>
     <br/>
     <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-primary')%>
 <% end %>

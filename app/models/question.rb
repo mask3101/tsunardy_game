@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
   belongs_to :category
+  has_one :image
   has_many :game_questions
   has_many :games, through: :game_questions
 

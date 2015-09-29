@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924035621) do
+ActiveRecord::Schema.define(version: 20150929212903) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20150924035621) do
     t.text     "game_name"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.binary   "data"
+    t.string   "filename"
+    t.string   "mime_type"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "players", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150924035621) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "category_id"
+    t.integer  "image_id"
   end
 
   create_table "users", force: :cascade do |t|
