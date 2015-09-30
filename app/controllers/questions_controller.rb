@@ -70,7 +70,9 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    if params[:question][:data]
+      @question.image.data = params[:question][:data]
+    end
     if @question.save
       flash[:notice] = "La pregunta se ha creado."
       redirect_to new_question_path
