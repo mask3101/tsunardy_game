@@ -1,6 +1,5 @@
 class Question < ActiveRecord::Base
   belongs_to :category
-  has_one :image
   has_many :game_questions
   has_many :games, through: :game_questions
 
@@ -19,4 +18,20 @@ class Question < ActiveRecord::Base
     self.active_question = true
   end
 
+
+  def initialize(params = {})
+  file = params.delete(:data)
+  super
+  if file
+    self.filename = sanitize_filename(file.original_filename)
+    self.mime_type = file.content_type
+    self.data = file.read
+  end
+end
+private
+  def sanitize_filename(filename)
+    return File.basename(filename)
+  end
+
+  
 end

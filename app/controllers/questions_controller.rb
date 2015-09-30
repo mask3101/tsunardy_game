@@ -10,7 +10,14 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    #send_data @question.data, :type => @question.mime_type, :disposition => 'inline'
+    @imgquest = Image.find_by question_id: params[:id]
+    # binding.pry
+    # if @imgquest.data && @imgquest.mime_type && @imgquest.filename
+    #  send_data(@imgquest.data, :type => @imgquest.mime_type, :filename => @imgquest.filename,
+    #           :disposition => 'inline')
+    
+    # send_data @imgquest.data, :type => @imgquest.mime_type, :disposition => 'inline'
+    # end
 
   end
 
@@ -46,18 +53,16 @@ class QuestionsController < ApplicationController
 
   def question
     #binding.pry
-
-    cat = params[:category_id]
-    dif = params[:difficulty]
     game = Game.find(params[:num_game])
     game.table_values[params[:num].to_i] = false
     game.save
-    quest_info = Question.where(:category_id => params[:category_id], :difficulty => params[:difficulty])
+    quest_info = Question.where(:category_id => params[:categoria], :difficulty => params[:difficulty])
     @id = params[:num_game]
     @game = Game.find(params[:num_game])
     gon.tiempo = @game.tiempo
-
+    
     @quest_info = quest_info.sample
+    @imgquest = Image.find_by question_id: @quest_info.id
     #binding.pry
   end
 
@@ -69,11 +74,24 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
     if params[:question][:data]
-      @question.image.data = params[:question][:data]
+      @image = Image.new(image_params)
     end
+    @question = Question.new(question_params)
+    
     if @question.save
+      if params[:question][:data]
+        @image.question_id = @question.id
+        if @image.save
+          @question.image_id = @image.id
+          @question.save
+          flash[:notice] = "La pregunta se ha creado."
+          redirect_to new_question_path and return
+        else
+          flash[:error] = "La pregunta no se pudo crear."
+          render :new
+        end
+      end
       flash[:notice] = "La pregunta se ha creado."
       redirect_to new_question_path
     else
@@ -110,7 +128,12 @@ class QuestionsController < ApplicationController
 
   end
 
-
+  def show_image
+    binding.pry
+    @imgquest = question.find(params[:id])
+    send_data(@imgquest.data, :type => @imgquest.mime_type, :filename => @imgquest.filename,
+              :disposition => 'inline')
+  end
 
   # DELETE /questions/1
   # DELETE /questions/1.json
@@ -134,5 +157,8 @@ class QuestionsController < ApplicationController
       #params[:question]
     end
 
+    def image_params
+      params.require(:question).permit(:data)
+    end
 
 end

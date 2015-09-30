@@ -1,6 +1,9 @@
 <%= include_gon(:init => true) %>
 <%= javascript_include_tag "question_question" %>
 <%= @quest_info.question %>
+<% if @imgquest %>
+<%= image_tag url_for(:controller => "images", :action => "show", :id => @imgquest.id)%>
+<% end %>
 <%= form_tag("/questions/answer", method: "post", id: "question") do %>
   <%= hidden_field_tag(:pregunta, @quest_info.id) %>
   <%= hidden_field_tag(:num_game, @id) %>
@@ -13,3 +16,7 @@
 
 </div>
 <p id="segundos" class="text-center"><%= @game.tiempo %> segundos</p>
+
+<div id="answer" style="display: none;">
+  
+</div>

@@ -24,7 +24,7 @@
           <tr class='game'>
           <% for j in 1..@game.categories.size %>
             <% d = i %>
-            <% c = j %>
+            <% c = j-1 %>
             <td class='game'>
               <% if eval_block(id_val, @game) %>
                 <%= form_tag("/questions/question", method: "post", style: "
@@ -32,7 +32,8 @@
                   <%= hidden_field_tag(:num_game, @game.id) %>
                   <%= hidden_field_tag(:num, id_val) %>
                   <%= hidden_field_tag(:difficulty, d) %>
-                  <%= hidden_field_tag(:categoria, c) %>
+                  <% binding.pry %>
+                  <%= hidden_field_tag(:categoria, @game.categories[c].id) %>
                   <%= render 'values', value: d, id_val: id_val %>
                 <% end %>
               <% end %>

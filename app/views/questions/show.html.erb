@@ -1,6 +1,9 @@
+<%= javascript_include_tag "questions" %>
 <p id="notice"><%= notice %></p>
 <p><%= @question.question %></p>
 <p><%= @question.answer %></p>
-<%= image_tag(@question.filename, :size => "80x80", :alt => "Picture", :width => '100', :height =>'100') %>
+<% if @imgquest %>
+<%= image_tag url_for(:controller => "images", :action => "show", :id => @imgquest.id)%>
+<% end %>
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>

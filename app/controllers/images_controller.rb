@@ -9,7 +9,15 @@ def index
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @imgquest = Image.find(params[:id])
+    if @imgquest.data && @imgquest.mime_type && @imgquest.filename
+     # send_data(@imgquest.data, :type => @imgquest.mime_type, :filename => @imgquest.filename,
+      #        :disposition => 'inline')
+    
+    send_data @imgquest.data, :type => @imgquest.mime_type, :disposition => 'inline'
+    end
   end
+
 
   # GET /categories/new
   def new

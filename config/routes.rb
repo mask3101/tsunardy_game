@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   #resources :players
-  resources :questions do
-    resources :images
-  end
+  resources :questions
+  resources :images
   resources :users
   resources :games do
     resources :players
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   get '/games/:id/game', to: 'games#game', as: :games_game
   post '/questions/question', to: 'questions#question'
   post '/questions/answer', to: 'questions#answer'
+  get 'questions/:id/:filename' => "questions#show_image"
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
