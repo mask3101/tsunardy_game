@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :images
   resources :users
   resources :games do
-    resources :players
+    resources :players do
+      member do
+        post 'the_points'
   end
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
