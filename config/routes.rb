@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     member do
       get 'questions/:question_id', :action => 'questions', :as => 'questions'
       post 'make_questions'
+      get 'desempate/:question_id', :action => 'desempate', :as => 'desempate'
+      post 'make_desempate'
     end
     resources :players do
       member do

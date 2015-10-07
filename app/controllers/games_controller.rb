@@ -20,6 +20,10 @@ class GamesController < ApplicationController
     redirect_to questions_game_path(:question_id => @quest_info.id, :id => @game.id, :num => params[:num])
   end
 
+  def desempate
+    @game = Game.find(params[:id])
+  end
+
   def questions
     #binding.pry
     @game = Game.find(params[:id])
@@ -41,7 +45,14 @@ class GamesController < ApplicationController
     #binding.pry
     if (@game.table_values.all? {|value| value == false })
       @game.table_values[0] = true
-      @player = @player.sort! {|a,b| a.points <=> b.points }
+      #binding.pry
+      puntos = @player.group("points").count("points")
+      puntos_max = puntos.max_by {|x,y| x}
+      if puntos_max[1] > 1
+        #redirect_to desempate
+      else
+        @player = @player.order(points: :desc).first
+      end
     end
   end
 

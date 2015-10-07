@@ -1,5 +1,5 @@
 <% if @game.table_values[0] %>
-  <%= render 'winner' %>
+  <%= render 'winner', player: @player %>
 <% else %>
 <div id="side" class="row">
 </br>
