@@ -11,15 +11,17 @@ class PlayersController < ApplicationController
   # GET /players/1.json
 
   def the_points
-    binding.pry
+
     @player = Player.find(params[:id])
-    @player.points_player_sum
+    @player.points_player_sum(params[:points_val].to_i, params[:sum])
+    @player.update(points: @player.points)
   end
 
   def points_player
-    binding.pry
     @player = Player.find(params[:id])
-    @player.points_player_sum
+    @player.points_player_sum(params[:points_val])
+    @player.save
+    redirect_to questions_game_path
   end
 
   def show
@@ -98,4 +100,21 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(name: [])
     end
+
+def bubble_sort
+    n = self.length
+    loop do
+      swapped = false
+
+      (n-1).times do |i|
+      if self[i].points > self[i+1].points
+        self[i], self[i+1] = self[i+1], self[i]
+        swapped = true
+      end
+    end
+      break if not swapped
+    end
+    self
+  end
+
 end

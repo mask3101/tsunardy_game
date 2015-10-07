@@ -37,6 +37,7 @@ class GamesController < ApplicationController
     #binding.pry
     if (@game.table_values.all? {|value| value == false })
       @game.table_values[0] = true
+      @player = @player.sort! {|a,b| a.points <=> b.points }
     end
   end
 
@@ -115,4 +116,20 @@ class GamesController < ApplicationController
     def game_params
       params.require(:game).permit(:game_name, :tiempo, :num_questions, category_ids: [])
     end
+
+    def bubble_sort
+    n = self.length
+    loop do
+      swapped = false
+
+      (n-1).times do |i|
+      if self[i].points > self[i+1].points
+        self[i], self[i+1] = self[i+1], self[i]
+        swapped = true
+      end
+    end
+      break if not swapped
+    end
+    self
+  end
 end

@@ -7,14 +7,14 @@
               <div class='nav_item'>
                 <div class="text-center" style="width:100%">
                   <div class="span0 well text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id), remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => params[:difficulty], :sum => true), :method => 'POST', remote: true do %>
                       <p><i class='glyphicon glyphicon-plus'></i></p>
                     <% end -%>
                   </div>
                   <p><%= player.name %></p><br/><p><%= player.points %></p>
                   <div class="span0 well text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id), remote: true do %>
-                      <i class='glyphicon glyphicon-plus'></i>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => params[:difficulty], :sum => false), :method => 'POST', remote: true do %>
+                      <i class='glyphicon glyphicon-minus'></i>
                     <% end -%>
                   </div>
               </div>
