@@ -20,8 +20,22 @@ class GamesController < ApplicationController
     redirect_to questions_game_path(:question_id => @quest_info.id, :id => @game.id, :num => params[:num])
   end
 
+  def make_desempate
+    quest_info = Question.all
+    @quest_info = quest_info.sample
+    @game = Game.find(params[:id])
+    redirect_to desempate_game_path(id: @game.id, question_id: @quest_info.id)
+  end
+
   def desempate
     @game = Game.find(params[:id])
+    @game.table_values[params[:num].to_i] = false
+    @game.save
+    gon.tiempo = @game.tiempo
+
+    @quest_info = Question.find(params[:question_id])
+    @imgquest = Image.find_by question_id: @quest_info.id
+    @player = Player.where(game_id: @game.id)
   end
 
   def questions
@@ -45,11 +59,11 @@ class GamesController < ApplicationController
     #binding.pry
     if (@game.table_values.all? {|value| value == false })
       @game.table_values[0] = true
-      #binding.pry
       puntos = @player.group("points").count("points")
       puntos_max = puntos.max_by {|x,y| x}
+      #binding.pry
       if puntos_max[1] > 1
-        #redirect_to desempate
+        redirect_to make_desempate_game_path
       else
         @player = @player.order(points: :desc).first
       end
