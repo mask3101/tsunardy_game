@@ -1,0 +1,9 @@
+<%= @quest_info.answer %>
+<%= form_tag(games_game_path(@id), method: "get") do %>
+
+  <%= submit_tag("regresar a juego") %>
+<% end %>
+<%= render 'players', quest: @quest_info %>  
+  
+
+

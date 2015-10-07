@@ -27,7 +27,7 @@
             <% c = j-1 %>
             <td class='game'>
               <% if eval_block(id_val, @game) %>
-                <%= form_tag(questions_game_path, method: "get", style: "
+                <%= form_tag(make_questions_game_path, method: "POST", style: "
     margin-bottom: 0px") do %>
                   <%= hidden_field_tag(:num_game, @game.id) %>
                   <%= hidden_field_tag(:num, id_val) %>

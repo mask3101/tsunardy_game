@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   resources :users
   resources :games do
     member do
-      get 'questions'
-      #get 'questions/:question_id', :action => 'questions', :as => 'questions'
+      get 'questions/:question_id', :action => 'questions', :as => 'questions'
+      post 'make_questions'
     end
     resources :players do
-      member do 
+      member do
         post 'the_points'
       end
     end
@@ -22,10 +22,8 @@ Rails.application.routes.draw do
   #get '/games/:id/players' => 'games#categories', as: :new_game_player
   root to: 'games#index'
   get '/games/:id/game', to: 'games#game', as: :games_game
-  post '/questions/question', to: 'questions#question'
-  post '/questions/answer', to: 'questions#answer'
   get 'questions/:id/:filename' => "questions#show_image"
-  get '/games/:game_id/players/:id/the_points', to: 'player#points', as: :points_player
+  #get '/games/:game_id/players/:id/the_points', to: 'player#points', as: :points_player
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

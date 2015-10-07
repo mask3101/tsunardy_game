@@ -17,12 +17,12 @@ class PlayersController < ApplicationController
     @player.update(points: @player.points)
   end
 
-  def points_player
-    @player = Player.find(params[:id])
-    @player.points_player_sum(params[:points_val])
-    @player.save
-    redirect_to questions_game_path
-  end
+  # def points_player
+  #   @player = Player.find(params[:id])
+  #   @player.points_player_sum(params[:points_val])
+  #   @player.save
+  #   redirect_to questions_game_path
+  # end
 
   def show
   end

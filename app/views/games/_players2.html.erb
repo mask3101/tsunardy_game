@@ -1,0 +1,23 @@
+<table border="0" width="100%">
+  <% i = 1%>
+    <tbody>
+        <td>
+        <ul class="nav">
+          <% @player.each do |player| %>
+            <li>
+              <div class='nav_item'>
+                <div class="well text-center" style="width:100%">
+                  <div class="span0 well text-center" id=<%= i %>>
+   <%= link_to "+", the_points_game_player_path(:controller => player, :id => player.id, :game_id => player.game_id, :points => quest.points, :the_div => i),method: 'POST', remote: true %>
+    <br/>
+                  <%= player.name %><br/><%= player.points %>
+                </div>
+              </div>
+            </li>
+            <% i += 1 %>
+          <% end %>
+        </ul>
+      </td>
+      </tr>
+    </tbody>
+  </table>
