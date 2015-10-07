@@ -8,4 +8,9 @@ class Player < ActiveRecord::Base
     self.points = 0
   end
 
+  def points_player_sum
+    binding.pry
+    self.points = self.points + 100
+  end
+
 end

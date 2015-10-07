@@ -4,7 +4,15 @@ Rails.application.routes.draw do
   resources :images
   resources :users
   resources :games do
-    resources :players
+    member do
+      get 'questions'
+      #get 'questions/:question_id', :action => 'questions', :as => 'questions'
+    end
+    resources :players do
+      member do 
+        post 'the_points'
+      end
+    end
   end
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
@@ -17,6 +25,7 @@ Rails.application.routes.draw do
   post '/questions/question', to: 'questions#question'
   post '/questions/answer', to: 'questions#answer'
   get 'questions/:id/:filename' => "questions#show_image"
+  get '/games/:game_id/players/:id/the_points', to: 'player#points', as: :points_player
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

@@ -63,6 +63,7 @@ class QuestionsController < ApplicationController
     
     @quest_info = quest_info.sample
     @imgquest = Image.find_by question_id: @quest_info.id
+    @player = Player.where(game_id: params[:num_game])
     #binding.pry
   end
 

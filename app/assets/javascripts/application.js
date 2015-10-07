@@ -34,3 +34,8 @@ document.getElementById(divName).appendChild(label1);
 document.getElementById(divName).appendChild(input1);
 counter++;
 }
+
+
+function visibleDiv(divInvi){
+ document.getElementById(divInvi).setAttribute('style', 'display: inline;')
+}

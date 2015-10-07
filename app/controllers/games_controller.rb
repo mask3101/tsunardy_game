@@ -13,6 +13,22 @@ class GamesController < ApplicationController
     #binding.pry
   end
 
+  def questions
+    #binding.pry
+    game = Game.find(params[:num_game])
+    game.table_values[params[:num].to_i] = false
+    game.save
+    quest_info = Question.where(:category_id => params[:categoria], :difficulty => params[:difficulty])
+    @id = params[:num_game]
+    @game = Game.find(params[:num_game])
+    gon.tiempo = @game.tiempo
+    
+    @quest_info = quest_info.sample
+    @imgquest = Image.find_by question_id: @quest_info.id
+    @player = Player.where(game_id: params[:num_game])
+    #binding.pry
+  end
+
   def game
 
     #game_categories = GameCategory.where(game_id: params[:id])

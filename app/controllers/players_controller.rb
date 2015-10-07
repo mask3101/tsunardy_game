@@ -9,6 +9,19 @@ class PlayersController < ApplicationController
 
   # GET /players/1
   # GET /players/1.json
+
+  def the_points
+    binding.pry
+    @player = Player.find(params[:id])
+    @player.points_player_sum
+  end
+
+  def points_player
+    binding.pry
+    @player = Player.find(params[:id])
+    @player.points_player_sum
+  end
+
   def show
   end
 
