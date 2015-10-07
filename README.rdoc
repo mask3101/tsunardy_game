@@ -1,5 +1,9 @@
 == README
 
+== Revisa falla en consola de link
+
+#$.ajax({ type: 'POST', URL: '/games/60/players/52/the_points', complete: function(xhr){ document.body.innerHTML=xhr.responseText; }})
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
