@@ -24,8 +24,7 @@
 <p><%= @quest_info.answer %></p>
 <%= form_tag(games_game_path(@game.id), method: "get") do %>
 
-  <%= submit_tag("regresar a juego") %>
-<% end %>
+
 <table border="0" width="100%">
     <tbody>
         <td>
@@ -35,16 +34,13 @@
               <div class='span0 nav_item well'>
                 <div class="text-center" style="width:100%">
                   <div class="text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => true), class: 'pointo',:method => 'PUT', remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => true), method: :put, remote: true do %>
                       <p><i class='glyphicon glyphicon-plus'></i></p>
-                    <% end -%>
+                      <% end -%>
                   </div>
-                  <p><%= player.name %></p>
-                  <span class="points-count" data-id="<%= player.id %>">
-                  <p><%= player.points %></p>
-                  </span>
+                  <p><%= player.name %></p><p><%= player.points %></p>
                   <div class="text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => false), class: 'pointo', :method => 'PUT', remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => false), :method => 'POST', remote: true do %>
                       <i class='glyphicon glyphicon-minus'></i>
                     <% end -%>
                   </div>
@@ -57,6 +53,6 @@
     </tbody>
   </table>
 
-
-
+  <%= submit_tag("regresar a juego") %>
+<% end %>
 </div>

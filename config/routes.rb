@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :games do
     member do
+      get 'test/:question_id', :action => 'test', :as => 'test'
       get 'questions/:question_id', :action => 'questions', :as => 'questions'
       post 'make_questions'
       get 'desempate/:question_id', :action => 'desempate', :as => 'desempate'
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
     end
     resources :players do
       member do
-        post 'the_points'
+        put 'the_points'
       end
     end
   end

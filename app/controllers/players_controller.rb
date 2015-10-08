@@ -11,10 +11,15 @@ class PlayersController < ApplicationController
   # GET /players/1.json
 
   def the_points
-
+    #binding.pry
     @player = Player.find(params[:id])
     @player.points_player_sum(params[:points_val].to_i, params[:sum])
     @player.update(points: @player.points)
+    if request.xhr?
+      render json: { points: @player.points, id: @player.id }
+    else
+      #redirect_to 
+    end
   end
 
   # def points_player

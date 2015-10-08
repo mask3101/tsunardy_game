@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @game = Game.new
+    @games = Game.all
   end
 
   # GET /games/1
@@ -39,6 +39,19 @@ class GamesController < ApplicationController
   end
 
   def questions
+    #binding.pry
+    @game = Game.find(params[:id])
+    @game.table_values[params[:num].to_i] = false
+    @game.save
+    gon.tiempo = @game.tiempo
+
+    @quest_info = Question.find(params[:question_id])
+    @imgquest = Image.find_by question_id: @quest_info.id
+    @player = Player.where(game_id: @game.id)
+    #binding.pry
+  end
+
+  def test
     #binding.pry
     @game = Game.find(params[:id])
     @game.table_values[params[:num].to_i] = false
