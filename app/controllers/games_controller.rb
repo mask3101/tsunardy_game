@@ -47,7 +47,7 @@ class GamesController < ApplicationController
 
     @quest_info = Question.find(params[:question_id])
     @imgquest = Image.find_by question_id: @quest_info.id
-    @player = Player.where(game_id: @game.id)
+    @player = Player.where(game_id: @game.id).order("id")
     #binding.pry
   end
 

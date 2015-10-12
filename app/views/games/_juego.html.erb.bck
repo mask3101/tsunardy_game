@@ -2,23 +2,29 @@
 <% if @game.table_values[0] %>
   <%= render 'winner', player: @player %>
 <% else %>
+<%= javascript_include_tag "juego" %>
 <div id="side" class="row">
 </br>
+  <%= link_to root_path do %>
+    <p><%= image_tag("Home", size: "20") %></p>
+  <% end -%>
   <% @player.each do |player| %>
-  <div class="well text-center jugador">
+  <div class="well text-center">
     <%= player.name %><br/><%= player.points %>
   </div>
   <% end %>
 </div>
 <div id="main_container">
-  <div class="barra2">
-<h1 class="pregunta well barra well2 text-center"><%= @game.game_name.upcase.html_safe %></h1></div>
+  <div><h1 class="text-center"><%= @game.game_name.upcase.html_safe %></h1></div>
   
   <div>
     <table class='game center-table' id="game_table">
         <tbody>
           <tr class='game'>
-            <%= render 'categories_game', game: @game %>
+            <% @game.categories.each do |category| %>
+
+              <td class='games'><%= category.name %></td>
+            <% end %>
         </tr>
         <% id_val = 1 %>
         <% for i in 1..@game.num_questions %>

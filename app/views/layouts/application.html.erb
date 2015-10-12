@@ -11,25 +11,40 @@
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-  <body>
+  <% if @game && @game.table_values[0] %>
+  <body class="win">
+  <% else %>
+  <body class="all">
+    <% end -%>
+    
     <header>
-
-        <div class="navbar navbar-default">
-        <%= render 'layouts/navigation_title' %>
+    <% if !@game %>
+      <div class="navbar navbar-default">
+      <%= render 'layouts/navigation_title' %>  
       </div>
+    <% else %>
+      <div class="navbar navbar-default">
+      <%= render 'layouts/navigation_title2' %>  
+    <% end -%>
     </header>
     <div id="main" role="main">
       <br/>
+      <% if !@game %>
       <div class="container" border="0">
+      <% else %>
+      <div class="container2" border="0">
+      <% end -%>
          <div class="row">
           <div class="span12">
             <%= render 'layouts/messages' %>
             <%= yield %>
           </div>
         </div>
+        <% if !@game %>
         <footer>
           <%= render 'layouts/footer' %>
         </footer>
+        <% end -%>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
   </body>

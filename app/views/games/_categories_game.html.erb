@@ -1,0 +1,11 @@
+<% game.categories.each do |category| %>
+  <% word = category.name.split %>
+  <% word.sort! { |a, b| b.length <=> a.length } %>
+    <% if (game.categories.size >= 7) && ( word[0].size > 8 && word[0].size < 11 ) %>
+      <td class='games' style='font-size:19px;'><%= category.name %></td>
+    <% elsif (game.categories.size >= 7) && ( word[0].size >= 11 ) %>
+      <td class='games' style='font-size:18px;'><%= category.name %></td>
+      <% else %>
+      <td class='games'><%= category.name %></td>
+    <% end -%>
+<% end -%>

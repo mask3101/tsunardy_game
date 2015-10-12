@@ -4,5 +4,5 @@
 
 $(document).on 'ajax:success', 'a.pointo', (status,data,xhr)->
   # the `data` parameter is the decoded JSON object
-  $(".points-count[data-id=#{data.id}]").text data.points
+  $(".points-count[data-id=#{data.id}]").append('p').text data.points
   return
