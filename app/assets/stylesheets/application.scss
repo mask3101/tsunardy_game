@@ -35,10 +35,12 @@ body.win {
 }
 
 .logo {
-      position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
+    
+    display: block;
+    max-width:185px;
+    max-height:100px;
+    width: auto;
+    height: auto;
     text-align: center;
     margin: auto;
 }
@@ -190,7 +192,8 @@ td.games {
   background: linear-gradient(#00CC00, #FFFF4D, #00CC00); */
   height: 100px;
   background-color: white;
-    color: #595f6b;
+  background-color: #8AC007;
+    color: white;
     font-size: 23px;
     
     font-weight: bold;
