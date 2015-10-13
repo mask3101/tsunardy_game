@@ -83,6 +83,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def fill_questions
+    @game = Game.find(params[:id])
+  end
+
   # GET /games/new
   def new
     @game = Game.new
@@ -92,6 +96,10 @@ class GamesController < ApplicationController
   def edit
   end
 
+  def select_questions
+    @questions = Question.all
+    @game = Game.find(params[:id])
+  end
   # POST /games
   # POST /games.json
   def create
@@ -102,8 +110,11 @@ class GamesController < ApplicationController
       i = 0
       loop do
         if i == 0
+          binding.pry
+          @game.table_questions << 0
           @game.table_values << false
         else
+          @game.table_questions << 0
           @game.table_values << true
         end
         #binding.pry

@@ -1,0 +1,13 @@
+<div class="well">
+<%= form_for @game do |f| %>
+<div class="control-group">
+    <%= f.label :table_questions, 'Selecciona la pregunta a asignar' %>
+    <% @questions.each do |question| %>
+    <p>
+      <%= f.radio_button :question, question.id, :checked => false %>
+      <%= f.label :question, question.question  + "\t \n \n --> R: #{question.answer}", :value => question.id %>
+    </p>
+    <% end  %>
+</div>
+<% end -%>
+</div>

@@ -8,6 +8,7 @@ class Game < ActiveRecord::Base
   validates :game_name, presence: true
 
   serialize :table_values, Array
+  serialize :table_questions, Array
 
   before_save :active_game
 

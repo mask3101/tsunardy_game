@@ -1,0 +1,31 @@
+<div>
+    <table class='game center-table' id="game_table">
+        <tbody>
+          <tr class='game'>
+            <%= render 'categories_game', game: @game %>
+        </tr>
+        <% id_val = 1 %>
+        <% for i in 1..@game.num_questions %>
+          <tr class='game'>
+          <% for j in 1..@game.categories.size %>
+            <% d = i %>
+            <% c = j-1 %>
+            <td class='game'>
+              <% if eval_block(id_val, @game) %>
+                <%= form_tag(make_questions_game_path, method: "POST", style: "
+    margin-bottom: 0px") do %>
+                  <%= hidden_field_tag(:num_game, @game.id) %>
+                  <%= hidden_field_tag(:num, id_val) %>
+                  <%= hidden_field_tag(:difficulty, d) %>
+                  <%= hidden_field_tag(:categoria, @game.categories[c].id) %>
+                  <%= render 'values', value: d, id_val: id_val %>
+                <% end %>
+              <% end %>
+              <% id_val += 1 %>
+            </td>
+          <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

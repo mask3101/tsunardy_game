@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       post 'make_questions'
       get 'desempate/:question_id', :action => 'desempate', :as => 'desempate'
       get 'make_desempate'
+      get 'fill_questions'
+      post 'select_questions'
+      
     end
     resources :players do
       member do
