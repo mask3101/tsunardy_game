@@ -8,23 +8,12 @@
       <%= f.label :answer %>
       <%= f.text_field :answer %>
     </div>
-    <div class='control-group'>
-      <%= f.label :difficulty %>
-      <%= f.text_field :difficulty %>
-    </div>
-    <div class='control-group'>
-  <% @categories.each do |category| %>
-    <% if @question.new_record? || category.id != @question.category_id %>
-      <%= f.radio_button :category_id, category.id, :checked => false %>
-      <%= f.label :category_id, category.name, :value => category.id %>
-    <% else  %>
-      <%= f.radio_button :category_id, category.id, :checked => true %>
-      <%= f.label :category_id, category.name, :value => category.id %>
-    <% end -%>
-  <% end %>
-</div>
-  <div class="control-group"><%= f.file_field :data %></div>
+    <div class="control-group"><%= f.label :data, "Añadir imagen para pregunta" %><%= f.file_field :data %></div>
     <br/>
-    <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-primary')%>
+    <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-success')%>
 <% end %>
+</div>
+
+  
+
 </div>

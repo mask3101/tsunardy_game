@@ -7,7 +7,20 @@
         <td class="games">Pregunta de Rescate</td>
       </tr>
       <tr class="game">
-        <td class="game">100</td>
+        <td class="game">
+          <% id_val = 0 %>
+                <% if @game.table_questions[id_val] != 0 %>
+                  <% button_tag(type: 'button', class: "btn-game") do %>
+                    <%= content_tag(:strong, 100) %>
+                  <%end %>
+                <% else %>
+                <%= form_tag(select_questions_game_path, method: "GET", style: "
+    margin-bottom: 0px") do %>
+                  <%= hidden_field_tag(:num, id_val) %>
+                  <%= submit_tag( 100, :class => "btn-game", :id => id_val) %>
+                <% end %>
+            <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -26,12 +39,13 @@
             <% c = j-1 %>
             <td class='game'>
               <% if eval_block(id_val, @game) %>
-                <% if @game.table_questions[c] != 0 %>
+              
+                <% if @game.table_questions[id_val] != 0 %>
                   <% button_tag(type: 'button') do %>
                     <%= content_tag(:strong, d * 100) %>
                   <%end %>
                 <% else %>
-                <%= form_tag(select_questions_game_path, method: "POST", style: "
+                <%= form_tag(select_questions_game_path, method: "GET", style: "
     margin-bottom: 0px") do %>
                   <%= hidden_field_tag(:num, id_val) %>
                   <%= hidden_field_tag(:difficulty, d) %>

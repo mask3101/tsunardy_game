@@ -14,10 +14,10 @@ class GamesController < ApplicationController
   end
 
   def make_questions
-    quest_info = Question.where(:category_id => params[:categoria], :difficulty => params[:difficulty])
     @game = Game.find(params[:num_game])
-    @quest_info = quest_info.sample
-    redirect_to questions_game_path(:question_id => @quest_info.id, :id => @game.id, :num => params[:num])
+    quest_info = Question.find(@game.table_questions[params[:num].to_i].to_i)
+    #binding.pry
+    redirect_to questions_game_path(:question_id => quest_info.id, :id => @game.id, :num => params[:num])
   end
 
   def make_desempate
@@ -96,7 +96,15 @@ class GamesController < ApplicationController
   def edit
   end
 
+  def save_questions
+    @game = Game.find(params[:id])
+    @game.table_questions[params[:num].to_i] = params[:question]
+    @game.save
+    redirect_to fill_questions_game_path(@game.id)
+  end
+
   def select_questions
+    #binding.pry
     @questions = Question.all
     @game = Game.find(params[:id])
   end
@@ -110,7 +118,7 @@ class GamesController < ApplicationController
       i = 0
       loop do
         if i == 0
-          binding.pry
+          #binding.pry
           @game.table_questions << 0
           @game.table_values << false
         else
@@ -122,7 +130,8 @@ class GamesController < ApplicationController
         i += 1
       end
       if @game.save
-        redirect_to new_game_player_path(@game.id)
+        redirect_to fill_questions_game_path(@game.id)
+        #redirect_to new_game_player_path(@game.id)
       else
         flash[:error] = "No se pudo crear el juego. Favor de llenar los campos faltantes"
         render :new

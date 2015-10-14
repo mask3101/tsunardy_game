@@ -5,8 +5,7 @@ class Question < ActiveRecord::Base
 
   validates :question, presence: true
   validates :answer, presence: true
-  validates :difficulty, presence: true, numericality: { only_integer: true, message: "Tiene que ser formato numerico y mayor a 0", greater_than: 0}
-  validates :category_id, presence: true
+  
 
   before_save :set_points, :activate_question_act
 
