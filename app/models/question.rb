@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   validates :answer, presence: true
   
 
-  before_save :set_points, :activate_question_act
+  before_save :activate_question_act
 
   def set_points
     self.points = self.difficulty.to_i * 100

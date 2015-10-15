@@ -31,9 +31,21 @@
 <p id="segundos" class="text-center timer"><%= @game.tiempo %> segundos</p>
 
 <div id="answer" style="display: none;">
+<% if @imgans %>
+<div id="question_side" class="row">
+<% end -%>
 <div class="barra2">
 <h2 class="pregunta well barra well2"><%= @quest_info.answer %></h2>
+<br/>
 </div>
+<% if @imgans %>
+</div>
+<% end -%>
+<% if @imgans %>
+<div class="question_container">
+<%= image_tag url_for(:controller => "quest_imags", :action => "show", :id => @imgans.id), class: "quest"%>
+</div>
+<% end %>
 <%= form_tag(games_game_path(@game.id), method: "get") do %>
   <%= button_tag "regresar al juego", :class => 'btn btn-success' %>
 <% end %>
@@ -46,7 +58,7 @@
               <div class='span0 nav_item'>
                 <div class="well text-center jugador">
                   <div class="text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => true), class: 'pointo',:method => 'PUT', remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @points, :sum => true), class: 'pointo',:method => 'PUT', remote: true do %>
                       <p><%= image_tag("plus_add_blue", size: "16") %></p>
                     <% end -%>
                   </div>
@@ -56,7 +68,7 @@
                   </span>
                   <p></p>
                   <div class="text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => false), class: 'pointo', :method => 'PUT', remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @points, :sum => false), class: 'pointo', :method => 'PUT', remote: true do %>
                       <p><%= image_tag("plus_add_minus", size: "16") %></p>
                     <% end -%>
                   </div>

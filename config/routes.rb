@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   #resources :players
   resources :questions
   resources :images
+  resources :quest_imags
   resources :users
   resources :games do
     member do

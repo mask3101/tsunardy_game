@@ -3,8 +3,8 @@
 <% if @imgquest %>
 <div id="question_side" class="row">
 <% end -%>
-<div>
-<p class="pregunta"><%= @quest_info.question %></p>
+<div class="barra2">
+<h2 class="pregunta well barra well2"><%= @quest_info.question %></h2>
 <br/>
 </div>
 <% if @imgquest %>
@@ -17,13 +17,13 @@
 <% end %>
 <br/>
 <div>
-<%= button_tag "respuesta" , :onclick => "visibleDiv('answer');", :class => 'btn btn-primary' %>
+<%= button_tag "respuesta" , :onclick => "visibleDiv('answer');", :class => 'btn btn-success' %>
 </div>
 
 <br/>
-<div class="main">
-<div class="progress">
-<div class="progress-bar progress-bar-striped progress-bar-info active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%" id="progress-bar">
+<div class="main" style="padding-left: 20px;">
+<div class="progress barra">
+<div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%" id="progress-bar">
 
 </div>
 
@@ -31,21 +31,34 @@
 <p id="segundos" class="text-center timer"><%= @game.tiempo %> segundos</p>
 
 <div id="answer" style="display: none;">
-<p class="pregunta"><%= @quest_info.answer %></p>
+<% if @imgans %>
+<div id="question_side" class="row">
+<% end -%>
+<div class="barra2">
+<h2 class="pregunta well barra well2"><%= @quest_info.answer %></h2>
+<br/>
+</div>
+<% if @imgans %>
+</div>
+<% end -%>
+<% if @imgans %>
+<div class="question_container">
+<%= image_tag url_for(:controller => "quest_imags", :action => "show", :id => @imgans.id), class: "quest"%>
+</div>
+<% end %>
 <%= form_tag(games_game_path(@game.id), method: "get") do %>
-
-  <%= submit_tag("regresar a juego") %>
+  <%= button_tag "regresar al juego", :class => 'btn btn-success' %>
 <% end %>
 <table border="0" width="100%">
     <tbody>
         <td>
-        <ul class="nav well">
+        <ul class="nav well barra">
           <% @player.each do |player| %>
             <li>
-              <div class='span0 nav_item well'>
-                <div class="text-center" style="width:100%">
+              <div class='span0 nav_item'>
+                <div class="well text-center jugador">
                   <div class="text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => true), class: 'pointo',:method => 'PUT', remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => 100, :sum => true), class: 'pointo',:method => 'PUT', remote: true do %>
                       <p><%= image_tag("plus_add_blue", size: "16") %></p>
                     <% end -%>
                   </div>
@@ -55,7 +68,7 @@
                   </span>
                   <p></p>
                   <div class="text-center">
-                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => @quest_info.difficulty, :sum => false), class: 'pointo', :method => 'PUT', remote: true do %>
+                    <%= link_to the_points_game_player_path(player, :id => player.id, :game_id => player.game_id, :points_val => 100, :sum => false), class: 'pointo', :method => 'PUT', remote: true do %>
                       <p><%= image_tag("plus_add_minus", size: "16") %></p>
                     <% end -%>
                   </div>

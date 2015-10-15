@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
+
   # GET /questions
   # GET /questions.json
   def index
@@ -78,23 +79,34 @@ class QuestionsController < ApplicationController
     if params[:question][:data]
       @image = Image.new(image_params)
     end
+    if params[:question][:data2]
+      @qimage = QuestImag.new(image_params2)
+    end
+
     @question = Question.new(question_params)
+
+    if @question.save
+    if params[:question][:data]
+      @image.question_id = @question.id
+      if @image.save
+        @question.image_id = @image.id
+      end
+    end
+    
+    if params[:question][:data2]
+      @qimage.question_id = @question.id
+      if @qimage.save
+        @question.quest_imags_id = @qimage.id
+      end
+    end
+    else
+    flash[:error] = "La pregunta no se pudo crear."
+    render :new
+    end
     
     if @question.save
-      if params[:question][:data]
-        @image.question_id = @question.id
-        if @image.save
-          @question.image_id = @image.id
-          @question.save
-          flash[:notice] = "La pregunta se ha creado."
-          redirect_to new_question_path and return
-        else
-          flash[:error] = "La pregunta no se pudo crear."
-          render :new
-        end
-      end
       flash[:notice] = "La pregunta se ha creado."
-      redirect_to new_question_path
+      redirect_to new_question_path and return
     else
       flash[:error] = "La pregunta no se pudo crear."
       render :new
@@ -112,10 +124,30 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
-    binding.pry
+    if params[:question][:data]
+      if @question.image_id
+        @image = QuestImag.find(@question.image_id)
+        @image.destroy
+      end
+      @image = Image.new(image_params)
+      @image.question_id = @question.id
+      @image.save(image_params)
+      @question.image_id = @image.id
+    end
+    if params[:question][:data2]
+      if @question.quest_imags_id
+        @qimage = QuestImag.find(@question.quest_imags_id)
+        @qimage.destroy
+      end
+      @qimage = QuestImag.new(image_params2)
+      @qimage.question_id = @question.id
+      @qimage.save(image_params2)
+      @question.quest_imags_id = @qimage.id
+    end
+
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to edit_question_path(@question.id), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -160,6 +192,10 @@ class QuestionsController < ApplicationController
 
     def image_params
       params.require(:question).permit(:data)
+    end
+
+    def image_params2
+      params.require(:question).permit(:data2)
     end
 
 end

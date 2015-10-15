@@ -17,7 +17,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:num_game])
     quest_info = Question.find(@game.table_questions[params[:num].to_i].to_i)
     #binding.pry
-    redirect_to questions_game_path(:question_id => quest_info.id, :id => @game.id, :num => params[:num])
+    redirect_to questions_game_path(:question_id => quest_info.id, :id => @game.id, :num => params[:num], :difficulty => params[:difficulty])
   end
 
   def make_desempate
@@ -35,10 +35,12 @@ class GamesController < ApplicationController
 
     @quest_info = Question.find(params[:question_id])
     @imgquest = Image.find_by question_id: @quest_info.id
-    @player = Player.where(game_id: @game.id)
+    @imgans = QuestImag.find_by question_id: @quest_info.id
+    @player = Player.where(game_id: @game.id).order("id")
   end
 
   def questions
+    @points = params[:difficulty].to_i
     #binding.pry
     @game = Game.find(params[:id])
     @game.table_values[params[:num].to_i] = false
@@ -47,6 +49,7 @@ class GamesController < ApplicationController
 
     @quest_info = Question.find(params[:question_id])
     @imgquest = Image.find_by question_id: @quest_info.id
+    @imgans = QuestImag.find_by question_id: @quest_info.id
     @player = Player.where(game_id: @game.id).order("id")
     #binding.pry
   end

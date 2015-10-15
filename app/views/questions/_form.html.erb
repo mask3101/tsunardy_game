@@ -8,7 +8,23 @@
       <%= f.label :answer %>
       <%= f.text_field :answer %>
     </div>
-    <div class="control-group"><%= f.label :data, "Añadir imagen para pregunta" %><%= f.file_field :data %></div>
+
+    <div class="control-group">
+      <% if @question.image_id %>
+        <div class="question_container">
+          <%= image_tag url_for(:controller => "images", :action => "show", :id => @question.image_id), class: "quest"%>
+        </div>
+      <% end -%>
+      <%= f.label :data, "Añadir imagen para pregunta" %><%= f.file_field :data %>
+    </div>
+    <br/>
+    
+    <% if @question.quest_imags_id %>
+      <div class="question_container">
+        <%= image_tag url_for(:controller => "quest_imags", :action => "show", :id => @question.quest_imags_id), class: "quest"%>
+      </div>
+    <% end -%>
+    <div class="control-group"><%= f.label :data2, "Añadir imagen para respuesta" %><%= f.file_field :data2 %></div>
     <br/>
     <%= f.submit(@question.new_record? ? 'New Question' : 'Update Question', class: 'btn btn-success')%>
 <% end %>
