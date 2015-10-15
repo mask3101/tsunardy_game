@@ -18,10 +18,6 @@
       <tr>
         <td class="show"><%= question.question %></td>
         <td class="show"><%= question.answer %></td>
-        <td class="show"><%= render 'dificultad', question: question %></td>
-        <td class="show"><%= question.points %></td>
-        <td class="show"><%= question.active_question %></td>
-        <td class="show"><%= question.category.name %></td>
         <td class="show"><%= link_to 'Show', question %></td>
         <td class="show"><%= link_to 'Edit', edit_question_path(question) %></td>
         <td class="show"><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
