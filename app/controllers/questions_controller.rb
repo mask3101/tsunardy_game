@@ -22,6 +22,41 @@ class QuestionsController < ApplicationController
 
   end
 
+  def delquest
+    @question = Question.find(params[:id])
+    @image = Image.find(@question.image_id)
+    @question.image_id = nil
+    @image.destroy
+
+    respond_to do |format|
+      if @question.save
+        format.html { redirect_to edit_question_path(@question.id), notice: 'Question was successfully updated.' }
+        format.json { render :show, status: :ok, location: @question }
+      else
+        format.html { render :edit }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  def delans
+    @question = Question.find(params[:id])
+    @image = QuestImag.find(@question.quest_imags_id)
+    @question.quest_imags_id = nil
+    @image.destroy
+
+    respond_to do |format|
+      if @question.save
+        format.html { redirect_to edit_question_path(@question.id), notice: 'Question was successfully updated.' }
+        format.json { render :show, status: :ok, location: @question }
+      else
+        format.html { render :edit }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end    
+  end
+
   # GET /questions/new
   def new
     @question = Question.new

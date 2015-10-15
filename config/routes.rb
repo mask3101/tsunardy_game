@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   #resources :players
-  resources :questions
+  resources :questions do
+    member do
+      post 'delquest'
+      post 'delans'
+      #get 'delquest', :action => 'delquest', :as => 'delquest'
+      #get 'delans', :action => 'delans', :as => 'delans'
+    end
+  end
   resources :images
   resources :quest_imags
   resources :users
