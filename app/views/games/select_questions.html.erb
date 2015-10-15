@@ -1,13 +1,17 @@
 <div class="well">
+<% asignado = @game.table_questions %>
 <%= form_tag(save_questions_game_path, method: "POST", style: "
     margin-bottom: 0px") do %>
   <div class="control-group">
     <%= label_tag :table_questions, 'Selecciona la pregunta a asignar' %>
     <% @questions.each do |question| %>
+    
+    <% if !asignado.include?(question.id.to_s) %>
       <p>
         <%= radio_button_tag :question, question.id, :checked => false %>
         <%= label_tag :question, question.question  + " --> R: #{question.answer}", :value => question.id %>
       </p>
+    <% end -%>
     <% end  %>
   </div>
   <%= hidden_field_tag(:num, params[:num]) %>
