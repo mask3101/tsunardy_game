@@ -32,6 +32,7 @@
         <td class="show text-center"><%= game.table_values.all? {|value| value == false } ? "Terminado" : "Empezar" %></td>
         <td class="show text-center"><%= button_to game.table_values.all? {|value| value == false } ? "Ver Ganador" : "Jugar" , games_game_path(id: game.id), :method => "get", :class => "btn btn-success" %></td>
         <% end %>
+        <td class="show text-center"><%= link_to 'Reiniciar Juego', restart_game_path(id: game.id), :method => "post", :class => "btn btn-danger" %></td>
         <td class="show text-center"><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

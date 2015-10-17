@@ -90,6 +90,22 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def restart
+    @game = Game.find(params[:id])
+    lesize = @game.table_values.size
+    i = 1
+    while i <= lesize  do
+      @game.table_values[i] = true
+      i +=1
+    end
+    @game.save
+    player = Player.where(game_id: @game.id)
+    player.each do |jugador|
+      jugador.destroy
+    end
+    redirect_to root_path
+  end
+
   # GET /games/new
   def new
     @game = Game.new

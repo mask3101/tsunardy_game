@@ -18,6 +18,14 @@
       <tr>
         <td class="show"><%= question.question %></td>
         <td class="show"><%= question.answer %></td>
+        <td class="show"><% if question.image_id %>
+          <%= image_tag url_for(:controller => "images", :action => "show", :id => question.image_id), class: "showed"%>
+          <% end %>
+        </td>
+        <td class="show"><% if question.quest_imags_id %>
+          <%= image_tag url_for(:controller => "quest_imags", :action => "show", :id => question.quest_imags_id), class: "showed"%>
+          <% end %>
+        </td>
         <td class="show"><%= link_to 'Show', question %></td>
         <td class="show"><%= link_to 'Edit', edit_question_path(question) %></td>
         <td class="show"><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>

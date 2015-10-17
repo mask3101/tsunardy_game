@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'fill_questions'
       get 'select_questions'
       post 'save_questions'
+      post 'restart'
 
     end
     resources :players do
