@@ -1,9 +1,19 @@
 <%= javascript_include_tag "questions" %>
 <p id="notice"><%= notice %></p>
-<p><%= @question.question %></p>
-<p><%= @question.answer %></p>
-<% if @imgquest %>
-<%= image_tag url_for(:controller => "images", :action => "show", :id => @imgquest.id)%>
-<% end %>
+<div class="barra2">
+<h2 class="pregunta well barra well2"><%= @question.question %></h2>
+</div>
+<% if @question.image_id %>
+<div class="question_container">
+<%= image_tag url_for(:controller => "images", :action => "show", :id => @question.image_id), class: "quest"%>
+</div>
+<% end -%>
+<div class="barra2">
+<h2 class="pregunta well barra well2"><%= @question.answer %></h2>
+</div>
+<% if @question.quest_imags_id %>
+<div class="question_container">
+<%= image_tag url_for(:controller => "quest_imags", :action => "show", :id => @question.quest_imags_id), class: "quest" %>
+<% end -%>
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
