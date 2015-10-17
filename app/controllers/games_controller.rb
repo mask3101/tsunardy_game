@@ -168,7 +168,7 @@ class GamesController < ApplicationController
     #binding.pry
     respond_to do |format|
       if @game.update(game_params)
-        format.html { redirect_to game_game_path(@game.id), notice: 'Game was successfully updated.' }
+        format.html { redirect_to games_game_path(@game.id), notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
         format.html { render :rules }
