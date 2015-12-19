@@ -21,7 +21,7 @@ class GamesController < ApplicationController
   end
 
   def make_desempate
-    quest_info = Question.all
+    quest_info = Question.all.order("id")
     @quest_info = quest_info.sample
     @game = Game.find(params[:id])
     redirect_to desempate_game_path(id: @game.id, question_id: @quest_info.id)
@@ -124,7 +124,7 @@ class GamesController < ApplicationController
 
   def select_questions
     #binding.pry
-    @questions = Question.all
+    @questions = Question.all.order("id")
     @game = Game.find(params[:id])
   end
   # POST /games
